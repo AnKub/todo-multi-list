@@ -48,3 +48,11 @@ A task management application with customizable lists for creating, editing, and
    ```bash
    git clone <repository-url>
    cd <repository-folder>
+   
+2. Install dependencies:
+
+3. npm install
+Start the development server:
+
+4. npm start
+Open http://localhost:3000 in your browser.
