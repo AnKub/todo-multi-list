@@ -1,20 +1,13 @@
-import React, {useState, useEffect} from "react";
-import {useParams, useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
 
 const TodoList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState({
-    title: "",
-    dueDate: "",
-    reminderDate: "",
-  });
-  
+  const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  // Загрузка задач из localStorage
   useEffect(() => {
     const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
     const currentList = storedLists.find((list) => list.id === Number(id));
@@ -23,7 +16,6 @@ const TodoList = () => {
     }
   }, [id]);
 
-  // Сохранение задач в localStorage
   useEffect(() => {
     const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
     const updatedLists = storedLists.map((list) => {
@@ -36,42 +28,50 @@ const TodoList = () => {
   }, [tasks, id]);
 
   const addTask = () => {
-    if(newTask.title) {
-      const task = {...newTask, id:Date.now()};
-      setTasks([...tasks,task]);
-      setNewTask({ title:"", dueDate:"", reminderDate:""});
-    }else{
-      alert('task title is required');
+    if (newTaskTitle.trim()) {
+      const newTask = { id: Date.now(), title: newTaskTitle, completed: false };
+      setTasks([...tasks, newTask]);
+      setNewTaskTitle("");
+    } else {
+      alert("Task title is required");
     }
   };
 
-  // delete
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
- 
+  const toggleTask = (taskId) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
   return (
     <div>
       <button onClick={() => navigate("/todos")}>Back to Lists</button>
-      <h2>To-Do List {id}</h2>
+      <h2>To-Do List</h2>
       <div>
         <input
           type="text"
           placeholder="Task title"
-          value={newTask.title}
-          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          value={newTaskTitle}
+          onChange={(e) => setNewTaskTitle(e.target.value)}
         />
         <button onClick={addTask}>Add Task</button>
       </div>
-      <ul>
+      <div style={{ marginTop: "20px" }}>
         {tasks.map((task) => (
-          <li key={task.id}>
-            {task.title} 
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-          </li>
+          <TaskItem
+            key={task.id}
+            task={task}
+            onDelete={deleteTask}
+            onToggle={toggleTask}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
