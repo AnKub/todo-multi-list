@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+Тo-Do Application with Customizable Lists
+This project is a React-based application designed to manage multiple To-Do lists with individual task details. Users can create and name To-Do lists, view them in a grid layout, and interact with tasks in detail. The application is styled using SCSS modules with global theming support.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+Multiple To-Do Lists:
 
-## Available Scripts
+Create, edit, and delete lists.
+Customize list names (e.g., "Work", "Family").
+View lists in a responsive grid format.
+Task Management:
 
-In the project directory, you can run:
+Add, edit, delete tasks within lists.
+View task details in a dedicated page.
+Responsive Design:
 
-### `npm start`
+Optimized for various screen sizes and devices.
+Light and dark theme support (customizable).
+Centralized SCSS Styling:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Styles are modular and globally managed in main.scss.
+Authentication Support:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+User registration and login page.
+Redirects users based on authentication status.
+Technologies Used
+Frontend: React, TypeScript
+State Management: Context API / React State
+Styling: SCSS with modular and global styles
+Routing: React Router DOM
+API Integration: Axios for backend communication
 
-### `npm test`
+Setup and Installation
+Prerequisites
+Node.js (>=16)
+npm (>=7) or yarn
+Installation
+Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+bash
+Install dependencies:
 
-### `npm run build`
+bash
+npm install
+Start the development server:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+bash
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm start
+Open your browser and navigate to: http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Available Scripts
+npm start
+Runs the application in development mode.
 
-### `npm run eject`
+npm run build
+Builds the app for production.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+npm test
+Launches the test runner.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm run lint
+Runs the linter for code quality checks.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Themes
+To switch between themes, update the themes.scss file. Use predefined variables for colors and apply global changes easily.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Future Improvements
+Implement drag-and-drop functionality for tasks.
+Add reminders and due date notifications.
+Improve animations and visual effects.
+Add support for sharing To-Do lists.
