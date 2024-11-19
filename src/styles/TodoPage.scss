@@ -1,0 +1,45 @@
+@import './Variables';
+
+.todo-page {
+  padding: 20px;
+}
+
+.todo-create-button {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
+
+.todo-list-container {
+  margin-top: 20px;
+}
+
+.todo-list-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.todo-list-item h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.todo-list-link {
+  text-decoration: none;
+  color: $primary-color;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

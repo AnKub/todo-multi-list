@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom"; 
 import TaskItem from "./TaskItem";
+import './main.scss';
 
 const TodoList = () => {
   const { id } = useParams();
@@ -50,26 +51,32 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => navigate("/todos")}>Back to Lists</button>
-      <h2>To-Do List</h2>
-      <div>
+    <div className="todo-list">
+      <button onClick={() => navigate("/todos")} className="todo-list-back-button">Back to Lists</button>
+      <h2 className="todo-list-title">To-Do List</h2>
+      <div className="todo-list-input-container">
         <input
           type="text"
           placeholder="Task title"
           value={newTaskTitle}
           onChange={(e) => setNewTaskTitle(e.target.value)}
+          className="todo-list-input"
         />
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask} className="todo-list-button">
+          Add Task
+        </button>
       </div>
-      <div style={{ marginTop: "20px" }}>
+      <div className="todo-items-container">
         {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onDelete={deleteTask}
-            onToggle={toggleTask}
-          />
+          <div key={task.id} className="todo-item">
+            <Link to={`/todo/${task.id}`} className="todo-item-link">
+              <TaskItem
+                task={task}
+                onDelete={deleteTask}
+                onToggle={toggleTask}
+              />
+            </Link>
+          </div>
         ))}
       </div>
     </div>

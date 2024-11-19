@@ -1,0 +1,24 @@
+@import './Variables';
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  border-radius: $border-radius;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  background-color: $primary-color;
+  color: white;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}

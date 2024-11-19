@@ -3,27 +3,20 @@ import React from "react";
 const TaskItem = ({ task, onDelete, onToggle }) => {
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "10px",
-        border: "1px solid #ddd",
-        borderRadius: "5px",
-        marginBottom: "5px",
-        backgroundColor: task.completed ? "#d4edda" : "#f8d7da",
-      }}
+      className={`task-item ${task.completed ? "task-item-completed" : "task-item-pending"}`}
     >
       <span
-        style={{
-          textDecoration: task.completed ? "line-through" : "none",
-          cursor: "pointer",
-        }}
+        className="task-item-title"
         onClick={() => onToggle(task.id)}
       >
         {task.title}
       </span>
-      <button onClick={() => onDelete(task.id)}>Delete</button>
+      <button
+        className="task-item-delete"
+        onClick={() => onDelete(task.id)}
+      >
+        Delete
+      </button>
     </div>
   );
 };

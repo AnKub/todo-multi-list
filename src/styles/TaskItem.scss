@@ -1,0 +1,41 @@
+@import './variables';
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+
+  &-completed {
+    background-color: #d4edda;
+  }
+
+  &-pending {
+    background-color: #f8d7da;
+  }
+
+  .task-item-title {
+    text-decoration: none;
+    cursor: pointer;
+
+    &.completed {
+      text-decoration: line-through;
+    }
+  }
+
+  .task-item-delete {
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darkred;
+    }
+  }
+}

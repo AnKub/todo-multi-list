@@ -15,28 +15,34 @@ const RegistrationForm = () => {
   };
  
   return (
-    <form onSubmit={handleRegister}>
-        <h2>Register</h2>
-        <input
-            type="text"
-            placeholder="Username"
-            value={formData.username}
-            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-        />
-        <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <input
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        />
-        <button type="submit">Sign Up</button>
+    <form onSubmit={handleRegister} className="registration-form">
+      <h2 className="registration-title">Register</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={formData.username}
+        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+        className="registration-input"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        className="registration-input"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        className="registration-input"
+      />
+      <button type="submit" className="registration-button">
+        Sign Up
+      </button>
     </form>
-);
+  );
 };
+
 export default RegistrationForm;

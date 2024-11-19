@@ -37,35 +37,32 @@ useEffect(() => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>My TODO</h1>
+    <div className="todo-grid-container">
+      <h1 className="todo-grid-title">My TODO</h1>
       <input
         type="text"
         placeholder="New list name"
         value={newListName}
         onChange={(e) => setNewListName(e.target.value)}
+        className="todo-grid-input"
       />
-      <button onClick={addTodoList}>Add List</button>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", marginTop: "20px" }}>
+      <button onClick={addTodoList} className="todo-grid-button">
+        Add List
+      </button>
+      <div className="todo-grid">
         {todoLists.map((list) => (
           <div
             key={list.id}
-            style={{
-              border: "1px solid #ddd",
-              padding: "10px",
-              borderRadius: "5px",
-              width: "150px",
-              textAlign: "center",
-              cursor: "pointer",
-            }}
+            className="todo-grid-item"
             onClick={() => openTodoList(list.id)}
           >
-            <h3>{list.name}</h3>
+            <h3 className="todo-grid-item-title">{list.name}</h3>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 deleteTodoList(list.id);
               }}
+              className="todo-grid-item-delete"
             >
               Delete
             </button>
