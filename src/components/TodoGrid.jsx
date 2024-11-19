@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TodoGrid = ()=>{
   const [todoLists, setTodoLists] = useState([]);
   const [newListName, setNewListName] = useState("");
   const navigate = useNavigate();
+
+ // Загрузка данных из localStorage при монтировании
+ useEffect(() => {
+  const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+  setTodoLists(storedLists);
+}, []);
+
+// Сохранение данных в localStorage при изменении списка
+useEffect(() => {
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
+}, [todoLists]);
 
   const addTodoList = ()=>{
     if(newListName.trim()){
@@ -27,7 +38,7 @@ const TodoGrid = ()=>{
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>My To-Do Lists</h1>
+      <h1>My TODO</h1>
       <input
         type="text"
         placeholder="New list name"

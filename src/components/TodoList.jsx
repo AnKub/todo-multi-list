@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useParams, useNavigate} from "react-router-dom";
+import TaskItem from "./TaskItem";
 
 const TodoList = () => {
   const { id } = useParams();
@@ -11,6 +12,28 @@ const TodoList = () => {
     dueDate: "",
     reminderDate: "",
   });
+  
+
+  // Загрузка задач из localStorage
+  useEffect(() => {
+    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+    const currentList = storedLists.find((list) => list.id === Number(id));
+    if (currentList) {
+      setTasks(currentList.tasks);
+    }
+  }, [id]);
+
+  // Сохранение задач в localStorage
+  useEffect(() => {
+    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+    const updatedLists = storedLists.map((list) => {
+      if (list.id === Number(id)) {
+        return { ...list, tasks };
+      }
+      return list;
+    });
+    localStorage.setItem("todoLists", JSON.stringify(updatedLists));
+  }, [tasks, id]);
 
   const addTask = () => {
     if(newTask.title) {
