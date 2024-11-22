@@ -25,7 +25,6 @@ A task management application with customizable lists for creating, editing, and
 ### 🔒 **Authentication Support**  
 - Registration and login for users.  
 - Redirects based on user roles after login.
-
 ---
 
 ## 🛠️ **Technologies Used**
@@ -34,7 +33,6 @@ A task management application with customizable lists for creating, editing, and
 - **Routing:** React Router DOM  
 - **API Integration:** Axios  
 - **State Management:** Context API  
-
 ---
 
 ## 📋 **Installation and Setup**
@@ -48,11 +46,8 @@ A task management application with customizable lists for creating, editing, and
    ```bash
    git clone <repository-url>
    cd <repository-folder>
-   
 2. Install dependencies:
-
 3. npm install
 Start the development server:
-
 4. npm start
 Open http://localhost:3000 in your browser.
