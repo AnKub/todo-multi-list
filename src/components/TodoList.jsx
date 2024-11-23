@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom"; 
 import TaskItem from "./TaskItem";
-import './main.scss';
+import '../styles/main.scss';
 
 const TodoList = () => {
   const { id } = useParams();

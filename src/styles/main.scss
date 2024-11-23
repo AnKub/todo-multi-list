@@ -6,9 +6,11 @@
 @import './TodoGrid';
 @import './TaskItem';
 @import './TodoDetailPage';
+@import './animation.scss';
 
 body {
   font-family: $font-family;
+  font-size: 1rem;
   background-color: $background-color;
   margin: 0;
   padding: 0;
@@ -16,7 +18,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 }

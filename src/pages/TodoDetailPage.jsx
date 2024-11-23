@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import '../styles/main.scss'; 
+import { useParams, useNavigate } from 'react-router-dom'; // Заменили useHistory на useNavigate
+import '../styles/main.scss';
 
 const TodoDetailPage = () => {
   const { id } = useParams(); 
-  const history = useHistory(); 
+  const navigate = useNavigate(); // Используем useNavigate вместо useHistory
 
   const [task, setTask] = useState(null);
 
-  // downl localStorage id
+  // Загрузка задачи из localStorage
   useEffect(() => {
     const storedLists = JSON.parse(localStorage.getItem('todoLists')) || [];
     const currentList = storedLists.find((list) => list.id === Number(id));
@@ -16,7 +16,7 @@ const TodoDetailPage = () => {
     setTask(task);
   }, [id]);
 
-  //del
+  // Удаление задачи
   const handleDelete = () => {
     const storedLists = JSON.parse(localStorage.getItem('todoLists')) || [];
     const updatedLists = storedLists.map((list) => {
@@ -26,7 +26,7 @@ const TodoDetailPage = () => {
       return list;
     });
     localStorage.setItem('todoLists', JSON.stringify(updatedLists));
-    history.push(`/todo/${id}`); 
+    navigate(`/todo/${id}`); // Заменили history.push на navigate
   };
 
   if (!task) {

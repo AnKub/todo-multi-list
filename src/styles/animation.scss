@@ -1,0 +1,27 @@
+.account__left-side::before {
+  transform: translate(-100%, 0px);
+}
+
+.loaded .account__left-side::before {
+  transform: translate(0px, 0px);
+  transition: all 2s ease 1.5s;
+}
+
+.form > *,
+.account__logo,
+.account__login {
+  transform: translate(0px, 1.875rem);
+  opacity: 0;
+}
+
+.loaded .form > *,
+.loaded .account__logo,
+.loaded .account__login {
+  transform: translate(0, 0);
+  opacity: 1;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.loaded .account__logo {
+  transition-delay: 0.5s;
+}
