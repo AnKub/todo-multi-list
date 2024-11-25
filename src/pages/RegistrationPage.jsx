@@ -82,7 +82,7 @@ const RegistrationPage = () => {
             <label className="form-label" htmlFor="username">
               Username
             </label>
-            <input
+            {/* <input
               className="form-input"
               type="text"
               id="username"
@@ -90,7 +90,7 @@ const RegistrationPage = () => {
               value={formData.username}
               onChange={handleInputChange}
               required
-            />
+            /> */}
             {error.username && (
               <p className="registration-error">{error.username}</p>
             )}
