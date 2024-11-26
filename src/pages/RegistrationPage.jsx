@@ -76,7 +76,7 @@ const RegistrationPage = () => {
       </div>
       <div className="registration-right-side">
         <h2 className="form-title">Welcome</h2>
-        <p className="form-text">Join us to bring your ideas to life</p>
+        <p className="form-text">Join and save your time</p>
         <form className="registration-form" onSubmit={handleSubmit}>
           <div className="registration-field">
             <label className="form-label" htmlFor="username">
