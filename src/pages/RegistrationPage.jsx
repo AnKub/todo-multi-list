@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/RegistrationPage.scss"; // Использование модуля SCSS через импорт
+import styles from "../styles/RegistrationPage.scss" 
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({

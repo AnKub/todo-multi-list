@@ -1,11 +1,11 @@
-@use './Variables' as *;
-@use './RegistrationPage' as *;
-@use './TodoPage' as *;
-@use './TodoList' as *;
-@use './TodoGrid' as *;
-@use './TaskItem' as *;
-@use './TodoDetailPage' as *;
-@use './animation' as *;
+@use './Variables.scss' as *;
+@use './RegistrationPage.scss' as *;
+@use './TodoPage.scss' as *;
+@use './TodoList.scss' as *;
+@use './TodoGrid.scss' as *;
+@use './TaskItem.scss' as *;
+@use './TodoDetailPage.scss' as *;
+@use './animation.scss' as *;
 
 body {
   font-family: $font-family;
