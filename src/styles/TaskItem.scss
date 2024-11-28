@@ -1,4 +1,5 @@
-@import './variables';
+@use './Variables' as *;
+
 
 .task-item {
   display: flex;

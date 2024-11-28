@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/RegistrationPage.scss"; 
+import styles from "../styles/RegistrationPage.scss"; // Использование модуля SCSS через импорт
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -17,14 +17,18 @@ const RegistrationPage = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const navigate = useNavigate();
 
-  // Regex for validation
-  const usernameRegex = /^[a-zA-Z0-9_]{3,}$/; 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
-  const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/; 
+  // Регулярные выражения для проверки
+  const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
-  // Animation effect when the component mounts
+  // Эффект для установки класса .loaded
   useEffect(() => {
-    setTimeout(() => setIsPageLoaded(true), 100); // Delay to trigger CSS animation
+    const timer = setTimeout(() => {
+      setIsPageLoaded(true); // Устанавливаем флаг после загрузки
+    }, 100);
+
+    return () => clearTimeout(timer); // Очистка таймера при размонтировании
   }, []);
 
   const handleInputChange = (e) => {
@@ -50,7 +54,7 @@ const RegistrationPage = () => {
       [name]: errorMessage,
     }));
 
-    // Check if form is valid
+    // Проверяем валидность формы
     setIsFormValid(
       usernameRegex.test(formData.username) &&
         emailRegex.test(formData.email) &&
@@ -63,27 +67,27 @@ const RegistrationPage = () => {
 
     if (!isFormValid) return;
 
-    // Save data to localStorage and navigate
+    // Сохраняем данные в localStorage и переходим на страницу To-Do
     localStorage.setItem("user", JSON.stringify(formData));
     navigate("/todos");
   };
 
   return (
-    <div className={`registration-page ${isPageLoaded ? "loaded" : ""}`}>
-      <div className="registration-left-side">
-        <h1 className="registration-title">Turn your ideas into reality</h1>
-        <p className="registration-text">Start for free</p>
+    <div className={`${styles.registrationPage} ${isPageLoaded ? styles.loaded : ""}`}>
+      <div className={styles.registrationLeftSide}>
+        <h1 className={styles.registrationTitle}>Turn your ideas into reality</h1>
+        <p className={styles.registrationText}>Start for free</p>
       </div>
-      <div className="registration-right-side">
-        <h2 className="form-title">Welcome</h2>
-        <p className="form-text">Join and save your time</p>
-        <form className="registration-form" onSubmit={handleSubmit}>
-          <div className="registration-field">
-            <label className="form-label" htmlFor="username">
+      <div className={styles.registrationRightSide}>
+        <h2 className={styles.formTitle}>Welcome</h2>
+        <p className={styles.formText}>Join and save your time</p>
+        <form className={styles.registrationForm} onSubmit={handleSubmit}>
+          <div className={styles.registrationField}>
+            <label className={styles.formLabel} htmlFor="username">
               Username
             </label>
             <input
-              className="form-input"
+              className={styles.formInput}
               type="text"
               id="username"
               name="username"
@@ -92,15 +96,15 @@ const RegistrationPage = () => {
               required
             />
             {error.username && (
-              <p className="registration-error">{error.username}</p>
+              <p className={styles.registrationError}>{error.username}</p>
             )}
           </div>
-          <div className="registration-field">
-            <label className="form-label" htmlFor="email">
+          <div className={styles.registrationField}>
+            <label className={styles.formLabel} htmlFor="email">
               Email
             </label>
             <input
-              className="form-input"
+              className={styles.formInput}
               type="email"
               id="email"
               name="email"
@@ -109,15 +113,15 @@ const RegistrationPage = () => {
               required
             />
             {error.email && (
-              <p className="registration-error">{error.email}</p>
+              <p className={styles.registrationError}>{error.email}</p>
             )}
           </div>
-          <div className="registration-field">
-            <label className="form-label" htmlFor="password">
+          <div className={styles.registrationField}>
+            <label className={styles.formLabel} htmlFor="password">
               Password
             </label>
             <input
-              className="form-input"
+              className={styles.formInput}
               type="password"
               id="password"
               name="password"
@@ -126,11 +130,11 @@ const RegistrationPage = () => {
               required
             />
             {error.password && (
-              <p className="registration-error">{error.password}</p>
+              <p className={styles.registrationError}>{error.password}</p>
             )}
           </div>
           <button
-            className="form-button"
+            className={styles.formButton}
             type="submit"
             disabled={!isFormValid}
           >
@@ -141,4 +145,5 @@ const RegistrationPage = () => {
     </div>
   );
 };
-export default RegistrationPage;  
+
+export default RegistrationPage;

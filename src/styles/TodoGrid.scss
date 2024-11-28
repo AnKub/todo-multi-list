@@ -1,4 +1,4 @@
-@import './variables';
+@use './Variables' as *;
 
 .todo-grid-container {
   padding: 20px;

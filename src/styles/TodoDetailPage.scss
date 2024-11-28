@@ -1,4 +1,4 @@
-@import './variables';
+@use './Variables' as *;
 
 .todo-detail-page {
   background-color: white;

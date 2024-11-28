@@ -1,4 +1,4 @@
-@import './Variables';
+@use './Variables' as *;
 
 .todo-page {
   padding: 20px;

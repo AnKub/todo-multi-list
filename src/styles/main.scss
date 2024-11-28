@@ -1,12 +1,11 @@
-@import './variables';
-
-@import './RegistrationPage';
-@import './TodoPage';
-@import './TodoList';
-@import './TodoGrid';
-@import './TaskItem';
-@import './TodoDetailPage';
-@import './animation.scss';
+@use './Variables' as *;
+@use './RegistrationPage' as *;
+@use './TodoPage' as *;
+@use './TodoList' as *;
+@use './TodoGrid' as *;
+@use './TaskItem' as *;
+@use './TodoDetailPage' as *;
+@use './animation' as *;
 
 body {
   font-family: $font-family;
