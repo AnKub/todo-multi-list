@@ -7,7 +7,7 @@ const LocationWrapper = ({ children }) => {
   useEffect(() => {
     const body = document.querySelector('body');
     if (body) {
-      body.className = ''; // Сброс классов
+      body.className = '';
       if (location.pathname === '/') {
         body.classList.add('registration-page');
       }

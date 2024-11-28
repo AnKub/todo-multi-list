@@ -1,4 +1,4 @@
-@use './Variables.scss' as *;
+@use './Variables' as vars;
 
 .todo-grid-container {
   padding: 20px;
@@ -19,14 +19,14 @@
 
 .todo-grid-button {
   padding: 0.5rem 1rem;
-  background-color: $primary-color;
+  background-color: vars.$primary-color;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: $secondary-color;
+    background-color: vars.$secondary-color;
   }
 }
 
@@ -43,10 +43,10 @@
   width: 150px;
   text-align: center;
   cursor: pointer;
-  background-color: $background-color;
+  background-color: vars.$background-color;
 
   &:hover {
-    background-color: $primary-color;
+    background-color: vars.$primary-color;
     color: white;
   }
 }

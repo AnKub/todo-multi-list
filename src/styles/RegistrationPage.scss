@@ -1,6 +1,6 @@
-@use './Variables.scss' as *;
-@use './animation.scss' as *;
-@use "sass:color";
+@use './Variables' as vars;
+@use './animation.scss';
+
 
 
 
@@ -100,19 +100,19 @@
     .form-input {
       width: 100%;
       padding: 1rem;
-      border: 1px solid $secondary-color;
+      border: 1px solid vars.$secondary-color;
       border-radius: 5px;
       font-size: 1rem;
       transition: border-color 0.3s ease;
 
       &:focus {
-        border-color: color.adjust($primary-color, $lightness: -10%);
+        border-color: #333;
         outline: none;
       }
     }
 
     .form-button {
-      background: $secondary-color;
+      background: vars.$secondary-color;
       color: #fff;
       padding: 1rem;
       border: none;

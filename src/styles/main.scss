@@ -1,19 +1,19 @@
-@use './Variables.scss' as *;
-@use './RegistrationPage.scss' as *;
-@use './TodoPage.scss' as *;
-@use './TodoList.scss' as *;
-@use './TodoGrid.scss' as *;
-@use './TaskItem.scss' as *;
-@use './TodoDetailPage.scss' as *;
-@use './animation.scss' as *;
+@use './Variables' as vars;
+@use './RegistrationPage';
+@use './TodoPage';
+@use './TodoList';
+@use './TodoGrid';
+@use './TaskItem';
+@use './TodoDetailPage';
+@use './animation';
 
 body {
-  font-family: $font-family;
+  font-family: vars.$font-family;
   font-size: 1rem;
-  background-color: $background-color;
+  background-color: vars.$background-color;
   margin: 0;
   padding: 0;
-  color: $text-color;
+  color: vars.$text-color;
 }
 
 .container {
