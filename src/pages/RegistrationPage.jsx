@@ -1,143 +1,81 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/RegistrationPage.scss" 
+import "../styles/RegistrationPage.scss";
+import "../styles/main.scss";
 
 const RegistrationPage = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ username: "", email: "", password: "" });
+  const [error, setError] = useState({ username: "", email: "", password: "" });
   const [isFormValid, setIsFormValid] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const navigate = useNavigate();
 
-  // Регулярные выражения для проверки
   const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
-  // Эффект для установки класса .loaded
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPageLoaded(true); // Устанавливаем флаг после загрузки
-    }, 100);
-
-    return () => clearTimeout(timer); // Очистка таймера при размонтировании
+    const timer = setTimeout(() => setIsPageLoaded(true), 500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
 
     let errorMessage = "";
     if (name === "username" && !usernameRegex.test(value)) {
-      errorMessage =
-        "Username must be at least 3 characters and can only contain letters, numbers, and underscores.";
+      errorMessage = "Invalid username.";
     } else if (name === "email" && !emailRegex.test(value)) {
-      errorMessage = "Please enter a valid email address.";
+      errorMessage = "Invalid email.";
     } else if (name === "password" && !passwordRegex.test(value)) {
-      errorMessage =
-        "Password must be at least 6 characters long, contain a number, a capital letter, and a special character.";
+      errorMessage = "Weak password.";
     }
 
-    setError((prevError) => ({
-      ...prevError,
-      [name]: errorMessage,
-    }));
-
-    // Проверяем валидность формы
+    setError((prevError) => ({ ...prevError, [name]: errorMessage }));
     setIsFormValid(
       usernameRegex.test(formData.username) &&
-        emailRegex.test(formData.email) &&
-        passwordRegex.test(formData.password)
+      emailRegex.test(formData.email) &&
+      passwordRegex.test(formData.password)
     );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!isFormValid) return;
 
-    // Сохраняем данные в localStorage и переходим на страницу To-Do
     localStorage.setItem("user", JSON.stringify(formData));
     navigate("/todos");
   };
 
   return (
-    <div className={`${styles.registrationPage} ${isPageLoaded ? styles.loaded : ""}`}>
-      <div className={styles.registrationLeftSide}>
-        <h1 className={styles.registrationTitle}>Turn your ideas into reality</h1>
-        <p className={styles.registrationText}>Start for free</p>
+    <div className={`registration-page ${isPageLoaded ? "loaded" : ""}`}>
+      <div className="registration-left-side">
+        <h1 className="registration-title">Turn your ideas into reality</h1>
+        <p className="registration-text">Start for free</p>
       </div>
-      <div className={styles.registrationRightSide}>
-        <h2 className={styles.formTitle}>Welcome</h2>
-        <p className={styles.formText}>Join and save your time</p>
-        <form className={styles.registrationForm} onSubmit={handleSubmit}>
-          <div className={styles.registrationField}>
-            <label className={styles.formLabel} htmlFor="username">
-              Username
-            </label>
-            <input
-              className={styles.formInput}
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              required
-            />
-            {error.username && (
-              <p className={styles.registrationError}>{error.username}</p>
-            )}
-          </div>
-          <div className={styles.registrationField}>
-            <label className={styles.formLabel} htmlFor="email">
-              Email
-            </label>
-            <input
-              className={styles.formInput}
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-            {error.email && (
-              <p className={styles.registrationError}>{error.email}</p>
-            )}
-          </div>
-          <div className={styles.registrationField}>
-            <label className={styles.formLabel} htmlFor="password">
-              Password
-            </label>
-            <input
-              className={styles.formInput}
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-            {error.password && (
-              <p className={styles.registrationError}>{error.password}</p>
-            )}
-          </div>
-          <button
-            className={styles.formButton}
-            type="submit"
-            disabled={!isFormValid}
-          >
+      <div className="registration-right-side">
+        <h2 className="form-title">Welcome</h2>
+        <p className="form-text">Join and save your time</p>
+        <form className="registration-form"  onSubmit={handleSubmit}>
+          {["username", "email", "password"].map((field) => (
+            <div key={field} className="registration-field">
+              <label className="form-label" htmlFor={field}>
+                {field.charAt(0).toUpperCase() + field.slice(1)}
+              </label>
+              <input
+                className="form-input"
+                type={field === "password" ? "password" : "text"}
+                id={field}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                required
+              />
+              {error[field] && <p className="registration-error">{error[field]}</p>}
+            </div>
+          ))}
+          <button className="form-button" type="submit" disabled={!isFormValid}>
             Register
           </button>
         </form>
