@@ -14,7 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<RegistrationPage />} />
           <Route path="/todos" element={<TodoPage />} />
-          {/* <Route path="/todos/:id" element={<TodoList />} /> */}
+          <Route path="/todos/:id" element={<TodoList />} />
           <Route path="/todo/:id" element={<TodoDetailPage />} />
         </Routes>
       </LocationWrapper>
