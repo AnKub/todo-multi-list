@@ -52,7 +52,7 @@ const RegistrationPage = () => {
     <div className={`registration-page ${isPageLoaded ? "loaded" : ""}`}>
       <div className="registration-left-side">
         <h1 className="registration-title">Turn your ideas into reality</h1>
-        {/* <p className="registration-text">Start for free</p> */}
+        <p className="registration-text">Start for free</p>
       </div>
       <div className="registration-right-side">
         <h2 className="form-title">Welcome</h2>
