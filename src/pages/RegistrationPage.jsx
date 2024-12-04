@@ -81,6 +81,13 @@ const RegistrationPage = () => {
           <div className="registration-field">
             <label className="form-label" htmlFor="password">Password</label>
             <div className="password-container">
+            <span
+                className="password-toggle-icon"
+               onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? "Hide Password" : "Show Password"}
+              >
+                {showPassword ? "👁️" : "🙈"} {/* Замените на вашу иконку */}
+              </span>
               <input
                 className="form-input"
                 type={showPassword ? "text" : "password"} 
@@ -90,29 +97,21 @@ const RegistrationPage = () => {
                 onChange={handleInputChange}
                 required
               />
-              {/* Иконка для показа/скрытия пароля */}
-              <span
-                className="password-toggle-icon"
-          onClick={() => setShowPassword(!showPassword)}
-                title={showPassword ? "Hide Password" : "Show Password"}
-              >
-                {showPassword ? "👁️" : "🙈"} {/* Замените на вашу иконку */}
-              </span>
             </div>
             {error.password && <p className="registration-error">{error.password}</p>}
           </div>
-
+          <div className="button-group">
           <button className="form-button" type="submit" disabled={!isFormValid}>
             Register
           </button>
-  {/* Кнопка входа */}
-  <button
-    className="form-button login-button"
-    type="button"
-    onClick={() => navigate("/login")} // Предположим, страница входа — "/login"
-  >
-    Login
-  </button>
+            <button
+              className="form-button login-button"
+              type="button"
+              onClick={() => navigate("/login")} 
+            >
+              Login
+            </button>
+            </div>
         </form>
       </div>
     </div>
