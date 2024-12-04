@@ -83,7 +83,7 @@ const RegistrationPage = () => {
             <div className="password-container">
               <input
                 className="form-input"
-                type={showPassword ? "text" : "password"} // Переключаем тип ввода
+                type={showPassword ? "text" : "password"} 
                 id="password"
                 name="password"
                 value={formData.password}
@@ -105,6 +105,14 @@ const RegistrationPage = () => {
           <button className="form-button" type="submit" disabled={!isFormValid}>
             Register
           </button>
+  {/* Кнопка входа */}
+  <button
+    className="form-button login-button"
+    type="button"
+    onClick={() => navigate("/login")} // Предположим, страница входа — "/login"
+  >
+    Login
+  </button>
         </form>
       </div>
     </div>
