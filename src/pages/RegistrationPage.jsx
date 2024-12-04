@@ -13,7 +13,7 @@ const RegistrationPage = () => {
 
   const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  const passwordRegex = /^[A-Za-z\d]{6,}$/; // Упрощённое регулярное выражение для пароля
+  const passwordRegex = /^[A-Za-z\d]{6,}$/; // Упрощённое выражение для пароля
 
   useEffect(() => {
     const timer = setTimeout(() => setIsPageLoaded(true), 500);
@@ -76,8 +76,6 @@ const RegistrationPage = () => {
               {error[field] && <p className="registration-error">{error[field]}</p>}
             </div>
           ))}
-
-          {/* Поле для пароля с иконкой */}
           <div className="registration-field">
             <label className="form-label" htmlFor="password">Password</label>
             <div className="password-container">
@@ -86,7 +84,7 @@ const RegistrationPage = () => {
                onClick={() => setShowPassword(!showPassword)}
                 title={showPassword ? "Hide Password" : "Show Password"}
               >
-                {showPassword ? "👁️" : "🙈"} {/* Замените на вашу иконку */}
+                {showPassword ? "👁️" : "🙈"}
               </span>
               <input
                 className="form-input"
@@ -107,8 +105,7 @@ const RegistrationPage = () => {
             <button
               className="form-button login-button"
               type="button"
-              onClick={() => navigate("/login")} 
-            >
+              onClick={() => navigate("/login")}>
               Login
             </button>
             </div>
