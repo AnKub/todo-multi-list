@@ -99,7 +99,15 @@ const RegistrationPage = () => {
             {error.password && <p className="registration-error">{error.password}</p>}
           </div>
           <div className="button-group">
-        
+          <button className="form-button" type="submit" disabled={!isFormValid}>
+            Register
+          </button>
+            <button
+              className="form-button login-button"
+              type="button"
+              onClick={() => navigate("/login")}>
+              Login
+            </button>
             </div>
         </form>
       </div>
