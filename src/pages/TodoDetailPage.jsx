@@ -1,49 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Заменили useHistory на useNavigate
-import '../styles/main.scss';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const TodoDetailPage = () => {
-  const { id } = useParams(); 
-  const navigate = useNavigate(); // Используем useNavigate вместо useHistory
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [list, setList] = useState(null);
+  const [newTask, setNewTask] = useState("");
 
-  const [task, setTask] = useState(null);
-
-  // Загрузка задачи из localStorage
   useEffect(() => {
-    const storedLists = JSON.parse(localStorage.getItem('todoLists')) || [];
-    const currentList = storedLists.find((list) => list.id === Number(id));
-    const task = currentList ? currentList.tasks.find((task) => task.id === Number(id)) : null;
-    setTask(task);
+    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+    const foundList = storedLists.find((list) => list.id === Number(id));
+    setList(foundList);
   }, [id]);
 
-  // Удаление задачи
-  const handleDelete = () => {
-    const storedLists = JSON.parse(localStorage.getItem('todoLists')) || [];
-    const updatedLists = storedLists.map((list) => {
-      if (list.id === Number(id)) {
-        list.tasks = list.tasks.filter((task) => task.id !== Number(id));
-      }
-      return list;
-    });
-    localStorage.setItem('todoLists', JSON.stringify(updatedLists));
-    navigate(`/todo/${id}`); // Заменили history.push на navigate
+  const handleAddTask = () => {
+    if (!newTask.trim()) return;
+  
+    const updatedList = { ...list, tasks: [...list.tasks, { id: Date.now(), text: newTask }] };
+    updateLocalStorage(updatedList);
   };
+  
+  const handleDeleteTask = (taskId) => {
+    const updatedList = { ...list, tasks: list.tasks.filter((task) => task.id !== taskId) };
+    updateLocalStorage(updatedList);
+  };
+  
+  const updateLocalStorage = (updatedList) => {
+    const allLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+    const updatedLists = allLists.map((item) => (item.id === updatedList.id ? updatedList : item));
+  
+    localStorage.setItem("todoLists", JSON.stringify(updatedLists));
+    setList(updatedList);
+  };
+  
 
-  if (!task) {
-    return <div>Задача не найдена!</div>;
-  }
+  if (!list) return <p>Loading...</p>;
 
   return (
     <div className="todo-detail-page">
-      <div className="todo-detail-header">
-        <h2 className="todo-detail-title">{task.title}</h2>
-        <button className="todo-detail-button" onClick={handleDelete}>
-          Удалить задачу
-        </button>
-      </div>
-      <div className="todo-detail-task">
-        <p>{task.description}</p>
-      </div>
+      <h1>{list.name}</h1>
+      <input
+        type="text"
+        placeholder="Add a new task"
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
+      />
+      <button onClick={handleAddTask}>Add Task</button>
+      <button onClick={() => navigate("/todos")}>Back to Lists</button>
+      <ul>
+        {list.tasks.map((task) => (
+          <li key={task.id}>
+            {task.text}
+            <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

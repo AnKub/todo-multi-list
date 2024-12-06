@@ -1,7 +1,9 @@
+// src/components/TodoList.jsx
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom"; 
+import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
-import '../styles/main.scss';
+import { getTodoListById, saveTodoListTasks } from "../utils/localStorageUtils";
+import "../styles/main.scss";
 
 const TodoList = () => {
   const { id } = useParams();
@@ -9,42 +11,36 @@ const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
+  // Загружаем задачи из списка при монтировании
   useEffect(() => {
-    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
-    const currentList = storedLists.find((list) => list.id === Number(id));
+    const currentList = getTodoListById(id);
     if (currentList) {
-      setTasks(currentList.tasks);
+      setTasks(currentList.tasks || []);
     }
   }, [id]);
-
-  useEffect(() => {
-    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
-    const updatedLists = storedLists.map((list) => {
-      if (list.id === Number(id)) {
-        return { ...list, tasks };
-      }
-      return list;
-    });
-    localStorage.setItem("todoLists", JSON.stringify(updatedLists));
-  }, [tasks, id]);
 
   const addTask = () => {
     if (newTaskTitle.trim()) {
       const newTask = { id: Date.now(), title: newTaskTitle, completed: false };
-      setTasks([...tasks, newTask]);
+      setTasks((prevTasks) => [...prevTasks, newTask]);
       setNewTaskTitle("");
     } else {
       alert("Task title is required");
     }
   };
 
+  const saveTasks = () => {
+    saveTodoListTasks(id, tasks);
+    alert("Tasks saved successfully!");
+  };
+
   const deleteTask = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
   const toggleTask = (taskId) => {
-    setTasks(
-      tasks.map((task) =>
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
         task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
@@ -52,7 +48,6 @@ const TodoList = () => {
 
   return (
     <div className="todo-list">
-      <button onClick={() => navigate("/todos")} className="todo-list-back-button">Back to Lists</button>
       <h2 className="todo-list-title">To-Do List</h2>
       <div className="todo-list-input-container">
         <input
@@ -68,16 +63,21 @@ const TodoList = () => {
       </div>
       <div className="todo-items-container">
         {tasks.map((task) => (
-          <div key={task.id} className="todo-item">
-            <Link to={`/todo/${task.id}`} className="todo-item-link">
-              <TaskItem
-                task={task}
-                onDelete={deleteTask}
-                onToggle={toggleTask}
-              />
-            </Link>
-          </div>
+          <TaskItem
+            key={task.id}
+            task={task}
+            onDelete={deleteTask}
+            onToggle={toggleTask}
+          />
         ))}
+      </div>
+      <div className="todo-list-actions">
+        <button onClick={() => navigate("/todos")} className="todo-list-back-button">
+          Back to Lists
+        </button>
+        <button onClick={saveTasks} className="todo-list-save-button">
+          Save Tasks
+        </button>
       </div>
     </div>
   );

@@ -8,12 +8,12 @@ const RegistrationPage = () => {
   const [error, setError] = useState({ username: "", email: "", password: "" });
   const [isFormValid, setIsFormValid] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // Состояние видимости пароля
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  const passwordRegex = /^[A-Za-z\d]{6,}$/; // Упрощённое выражение для пароля
+  const passwordRegex = /^[A-Za-z\d]{6,}$/;
 
   useEffect(() => {
     const timer = setTimeout(() => setIsPageLoaded(true), 500);
@@ -45,7 +45,8 @@ const RegistrationPage = () => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    localStorage.setItem("user", JSON.stringify(formData));
+    localStorage.setItem("currentUser", formData.username);
+    localStorage.setItem(`todoLists_${formData.username}`, JSON.stringify([]));
     navigate("/todos");
   };
 
@@ -79,16 +80,16 @@ const RegistrationPage = () => {
           <div className="registration-field">
             <label className="form-label" htmlFor="password">Password</label>
             <div className="password-container">
-            <span
+              <span
                 className="password-toggle-icon"
-               onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword(!showPassword)}
                 title={showPassword ? "Hide Password" : "Show Password"}
               >
                 {showPassword ? "👁️" : "🙈"}
               </span>
               <input
                 className="form-input"
-                type={showPassword ? "text" : "password"} 
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 value={formData.password}
@@ -99,20 +100,20 @@ const RegistrationPage = () => {
             {error.password && <p className="registration-error">{error.password}</p>}
           </div>
           <div className="button-group">
-          <button className="form-button" type="submit" disabled={!isFormValid}>
-            Register
-          </button>
-            <button
+            <button className="form-button" type="submit" disabled={!isFormValid}>
+              Register
+            </button>
+              <button
               className="form-button login-button"
               type="button"
               onClick={() => navigate("/login")}>
               Login
             </button>
-            </div>
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default RegistrationPage
+export default RegistrationPage;
