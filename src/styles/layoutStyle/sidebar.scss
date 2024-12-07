@@ -1,0 +1,53 @@
+.sidebar {
+  background-color: #03101c;
+  color: white;
+  width: 200px; /* Полная ширина */
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+
+  ul {
+    list-style: none;
+    padding: 3rem;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-family: "Space Grotesk", Arial, sans-serif;
+        font-size: 1rem;
+        transition: color 0.3s ease-in-out;
+
+        &:hover {
+          color: #00ffcc;
+        }
+      }
+    }
+  }
+
+  &.collapsed {
+    width: 60px; /* Узкий сайдбар */
+  }
+
+  .toggle-button {
+    position: absolute;
+    top: 9%;
+    right: 97%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #03101c;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f4931d;
+      color: #ffffff;
+    }
+  }
+}

@@ -26,7 +26,7 @@ const TodoGrid = () => {
     if (newListName.trim()) {
       const newList = { id: Date.now(), name: newListName, tasks: [] };
       setTodoLists((prevLists) => [...prevLists, newList]);
-      setNewListName(""); // очищаем поле ввода
+      setNewListName(""); 
     } else {
       alert("List name is required");
     }
@@ -34,7 +34,7 @@ const TodoGrid = () => {
 
   // Удаление списка
   const deleteTodoList = (listId, event) => {
-    event.stopPropagation(); // предотвращаем срабатывание onClick родительского элемента
+    event.stopPropagation(); 
     setTodoLists((prevLists) => prevLists.filter((list) => list.id !== listId));
   };
 

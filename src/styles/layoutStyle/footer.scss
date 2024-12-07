@@ -1,0 +1,39 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #03101c;
+  color: #cccc;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  padding: 10px;
+
+  .footer-logo {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+  }
+
+  .footer-columns {
+    display: flex;
+    flex: 3;
+    justify-content: space-around;
+    font-size: smaller;
+    letter-spacing: 1px;
+
+    .footer-column {
+      h4 {
+        margin-bottom: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}

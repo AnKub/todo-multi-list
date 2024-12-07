@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .main-content {
+    display: flex;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+
+    &.collapsed .content {
+      margin-left: 60px; /* Отступ при свёрнутом Sidebar */
+    }
+
+    .content {
+      flex-grow: 1; /* Контент занимает оставшееся место */
+      padding: 20px;
+    }
+  }
+}

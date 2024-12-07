@@ -1,0 +1,35 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(270deg, #02053b, #03101c, #050636);
+  background-size: 600% 600%;
+  animation: colorShift 8s infinite;
+  color: white;
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  z-index: 1000;
+
+  h1 {
+    margin: 0.5rem 2rem;
+
+  }
+
+  @keyframes colorShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
