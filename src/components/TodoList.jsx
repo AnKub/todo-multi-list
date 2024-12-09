@@ -57,7 +57,7 @@ const TodoList = () => {
           onChange={(e) => setNewTaskTitle(e.target.value)}
           className="todo-list-input"
         />
-        <button onClick={addTask} className="todo-list-button">
+        <button onClick={addTask} className="todo-grid-button">
           Add Task
         </button>
       </div>
@@ -72,10 +72,10 @@ const TodoList = () => {
         ))}
       </div>
       <div className="todo-list-actions">
-        <button onClick={() => navigate("/todos")} className="todo-list-back-button">
+        <button onClick={() => navigate("/todos")} className="todo-grid-button">
           Back to Lists
         </button>
-        <button onClick={saveTasks} className="todo-list-save-button">
+        <button onClick={saveTasks} className="todo-grid-button">
           Save Tasks
         </button>
       </div>

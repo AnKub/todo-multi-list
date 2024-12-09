@@ -1,11 +1,30 @@
 @use './Variables' as vars;
 
 .todo-list {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background-color: white;
-  border-radius: vars.$border-radius;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list-input {
+  width: 30%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid vars.$primary-color;
+  border-radius: 5px;
+}
+.todo-list-actions{
+margin: 0;
+padding: 0;
+}
+
+  .todo-grid-button {
+    padding: 1rem 1rem;
+    background-color: vars.$primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .todo-item {
