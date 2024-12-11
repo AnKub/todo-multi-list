@@ -61,14 +61,14 @@ const TodoList = () => {
           Add Task
         </button>
       </div>
-      <div className="todo-items-container">
+      {/* <div className="todo-items-container">
         {tasks.map((task) => (
           <TaskItem
             key={task.id}
             task={task}
             onDelete={deleteTask}
             onToggle={toggleTask}
-          />
+          /> */}
         ))}
       </div>
       <div className="todo-list-actions">
