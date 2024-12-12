@@ -9,7 +9,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
       </button>
       {!isCollapsed && (
         <ul>
-        
+          <li>
+            <a href="/todos">Multi-Todo</a>
+          </li>
           <li>
             <a href="/calendar">Calendar</a>
           </li>
