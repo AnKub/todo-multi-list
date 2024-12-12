@@ -45,6 +45,19 @@ const TodoList = () => {
       )
     );
   };
+  const updateTask = (taskId, newTitle) => {
+    if (typeof newTitle !== "string") {
+      console.error("Invalid newTitle:", newTitle);
+      return;
+    }
+  
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle.trim() } : task
+      )
+    );
+  };
+  
 
   return (
     <div className="todo-list">
@@ -59,6 +72,9 @@ const TodoList = () => {
         />
         <button onClick={addTask} className="todo-grid-button">
           Add Task
+        </button>  
+        <button onClick={() => navigate("/todos")} className="todo-grid-button">
+          Back
         </button>
       </div>
       <div className="todo-items-container">
@@ -68,15 +84,13 @@ const TodoList = () => {
             task={task}
             onDelete={deleteTask}
             onToggle={toggleTask}
+            onUpdate={(taskId, newTitle) => updateTask(taskId, newTitle)}
           />
         ))}
       </div>
-      <div className="todo-list-actions">
-        <button onClick={() => navigate("/todos")} className="todo-grid-button">
-          Back to Lists
-        </button>
+      <div className="todo-list-actions">      
         <button onClick={saveTasks} className="todo-grid-button">
-          Save Tasks
+          Save
         </button>
       </div>
     </div>

@@ -8,28 +8,37 @@
 
 .todo-grid-title {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
+
 .todo-grid-input {
-  width: 30%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+  width: 25%;
+  padding: 0.7rem;
   border: 2px solid vars.$primary-color;
-  border-radius: 5px;
+  border-radius: 30px;
+
+  &:hover {
+    color: white;
+    margin-top: -5px;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  }
 }
 
 .todo-grid-button {
   margin: 1rem ;
   padding: 0.5rem 1rem;
-  background-color: vars.$primary-color;
+  background-color: #f5a640;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
 
   &:hover {
     background-color: vars.$secondary-color;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
   }
 }
 
@@ -37,40 +46,48 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+  margin-top: 1.5rem;
+
 }
 
 .todo-grid-item {
-  border: 1px solid #050636;
+  border: 1px solid #f58d05;
   padding: 10px;
-  border-radius: 5px;
-  width: 200px;
+  border-radius: 30px;
+  width: 180px;
   height: auto;
   text-align: center;
   cursor: pointer;
-  background-color: vars.$background-color;
+  background-color: #f5a640;
 
   &:hover {
-    background-color: vars.$primary-color;
+    background-color: #f58d05;
     color: white;
+    margin-top: -5px;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
   }
 }
 
 .todo-grid-item-title {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  color: grey;
+  color: #ffff;
+  letter-spacing: 1.5px;
 }
 
 .todo-grid-item-delete {
+  margin-left: 70%;
   padding: 0.3rem 0.5rem;
   font-size: 0.8rem;
-  background-color: rgb(232, 39, 39);
+  background-color:#400101;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
+  opacity: 0.3;
 
   &:hover {
-    background-color: darkred;
+    opacity: 0.8;
   }
 }

@@ -1,15 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/main.scss";
 
-const TaskItem = ({ task, onDelete, onToggle }) => {
+const TaskItem = ({ task, onDelete, onToggle, onUpdate }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(task.title || "");
+
+  const handleUpdate = () => {
+    if (newTitle.trim()) {
+      onUpdate(task.id, newTitle);
+      setIsEditing(false);
+    } else {
+      alert("Task title cannot be empty");
+    }
+  };
+
   return (
     <div className={`task-item ${task.completed ? "completed" : ""}`}>
-      <span onClick={() => onToggle(task.id)} className="task-item-title">
-        {task.title}
-      </span>
-      <button onClick={() => onDelete(task.id)} className="task-item-delete">
-        Delete
+      {isEditing ? (
+        <input
+          type="text"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          className="task-item-edit-input"
+        />
+      ) : (
+        <span
+          onClick={() => onToggle(task.id)}
+          className="task-item-title"
+        >
+          {task.title}
+        </span>
+      )}    
+      <div className="task-buttom">      
+      {isEditing ? (
+        <button onClick={handleUpdate} className="task-item-save">
+          Save
+        </button>
+      ) : (
+        <button
+          onClick={() => setIsEditing(true)}
+          className="task-item-edit"
+        >
+          Edit
+        </button>      
+      )}    
+      <button
+        onClick={() => onDelete(task.id)}
+        className="task-item-delete"
+      >
+        Del
       </button>
+      </div>
     </div>
   );
 };

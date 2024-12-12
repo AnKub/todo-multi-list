@@ -71,7 +71,7 @@ const TodoGrid = () => {
                 onClick={(e) => deleteTodoList(list.id, e)}
                 className="todo-grid-item-delete"
               >
-                Delete
+                Del
               </button>
             </div>
           ))
