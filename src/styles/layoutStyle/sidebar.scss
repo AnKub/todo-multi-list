@@ -1,13 +1,13 @@
 .sidebar {
   background-color: #03101c;
   color: white;
-  width: 200px; /* Полная ширина */
-  transition: width 0.3s ease-in-out;
+  width: 9vw;
+  transition: width 0.5s ease-in-out;
   overflow: hidden;
 
   ul {
     list-style: none;
-    padding: 3rem;
+    padding: 3.5rem 2rem;
 
     li {
       margin-bottom: 10px;
@@ -17,7 +17,7 @@
         text-decoration: none;
         font-family: "Space Grotesk", Arial, sans-serif;
         font-size: 1rem;
-        transition: color 0.3s ease-in-out;
+        transition: color 0.5s ease-in-out;
 
         &:hover {
           color: #00ffcc;
@@ -27,27 +27,27 @@
   }
 
   &.collapsed {
-    width: 60px; /* Узкий сайдбар */
+    width: 30px; /* Узкий сайдбар */
   }
 
   .toggle-button {
     position: absolute;
-    top: 9%;
-    right: 97%;
-    width: 30px;
-    height: 30px;
+    top: 11%;
+    left: 8%;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background-color: #03101c;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    background-color: #001c21;
+    color: #07a67f;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 
     &:hover {
-      background-color: #f4931d;
-      color: #ffffff;
+      background-color: #07a67f;
+      color: #001c21;
     }
   }
 }

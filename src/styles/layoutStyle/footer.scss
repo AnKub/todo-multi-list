@@ -3,14 +3,13 @@
   justify-content: space-between;
   align-items: center;
   background-color: #03101c;
-  color: #cccc;
+  color: #07a67f;
   font-family: "Space Grotesk", Arial, sans-serif;
   padding: 10px;
 
   .footer-logo {
     flex: 1;
     text-align: center;
-    padding: 10px;
     font-size: 1.5rem;
   }
 
@@ -18,7 +17,7 @@
     display: flex;
     flex: 3;
     justify-content: space-around;
-    font-size: smaller;
+    font-size: 0.7rem;
     letter-spacing: 1px;
 
     .footer-column {

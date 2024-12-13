@@ -5,16 +5,18 @@
   padding: 10px 15px;
   max-width: 50%;
   color: white;
-  background-color: #f5a640;
+  background-color: #03101c;
   border: 1px solid #f58d05;
   border-radius: 30px;
   margin-bottom: 10px;
 
   &:hover {
     background-color: #f58d05;
-    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    border: 1px solid #03101c;
   }
+
+
+  
 
   &-completed {
     background-color: #d4edda;

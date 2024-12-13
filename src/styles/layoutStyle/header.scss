@@ -3,22 +3,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
-  background: linear-gradient(270deg, #02053b, #03101c, #050636);
+  height: 8%;
+  background: linear-gradient(280deg, #02053b,#048263, #03101c,#001c21);
   background-size: 600% 600%;
-  animation: colorShift 8s infinite;
+  animation: colorShift 30s infinite;
   color: white;
   display: flex;
-  // align-items: center;
-  // justify-content: center;
   font-family: "Space Grotesk", Arial, sans-serif;
   font-weight: 500;
   font-size: 1rem;
   z-index: 1000;
 
-  h1 {
-    margin: 0.5rem 2rem;
-
+  h2 {
+    padding-left: 1.5rem;
+    margin: 0.5rem;
+    letter-spacing: 2px;
   }
 
   @keyframes colorShift {

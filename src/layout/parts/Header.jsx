@@ -4,7 +4,7 @@ import "../../styles/layoutStyle/header.scss";
 const Header = () => {
   return (
     <header className="header">
-      <h1>Multi-Todo</h1>
+      <h2>Multi-Todo</h2>
     </header>
   );
 };

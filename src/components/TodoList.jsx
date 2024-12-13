@@ -1,4 +1,3 @@
-// src/components/TodoList.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
@@ -9,15 +8,20 @@ const TodoList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
+  const [listName, setListName] = useState(""); // Додаємо стан для назви списку
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  // Загружаем задачи из списка при монтировании
+  // Завантажуємо список і його назву
   useEffect(() => {
     const currentList = getTodoListById(id);
     if (currentList) {
-      setTasks(currentList.tasks || []);
+      setListName(currentList.name || "Unnamed List"); // Встановлюємо назву
+      setTasks(currentList.tasks || []); // Встановлюємо задачі
+    } else {
+      alert("List not found! Returning to grid.");
+      navigate("/todos");
     }
-  }, [id]);
+  }, [id, navigate]);
 
   const addTask = () => {
     if (newTaskTitle.trim()) {
@@ -45,23 +49,23 @@ const TodoList = () => {
       )
     );
   };
+
   const updateTask = (taskId, newTitle) => {
     if (typeof newTitle !== "string") {
       console.error("Invalid newTitle:", newTitle);
       return;
     }
-  
+
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId ? { ...task, title: newTitle.trim() } : task
       )
     );
   };
-  
 
   return (
     <div className="todo-list">
-      <h2 className="todo-list-title">To-Do List</h2>
+      <h2 className="todo-list-title">{listName}</h2> {/* Відображаємо назву списку */}
       <div className="todo-list-input-container">
         <input
           type="text"
@@ -72,7 +76,7 @@ const TodoList = () => {
         />
         <button onClick={addTask} className="todo-grid-button">
           Add Task
-        </button>  
+        </button>
         <button onClick={() => navigate("/todos")} className="todo-grid-button">
           Back
         </button>
@@ -88,7 +92,7 @@ const TodoList = () => {
           />
         ))}
       </div>
-      <div className="todo-list-actions">      
+      <div className="todo-list-actions">
         <button onClick={saveTasks} className="todo-grid-button">
           Save
         </button>

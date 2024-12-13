@@ -5,12 +5,12 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   return (
     <aside className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <button className="toggle-button" onClick={toggleSidebar}>
-        {isCollapsed ? "→" : "←"}
+        {isCollapsed ? ">" : "<"}
       </button>
       {!isCollapsed && (
         <ul>
           <li>
-            <a href="/todos">Multi-Todo</a>
+            <a href="/todos">Todos</a>
           </li>
           <li>
             <a href="/calendar">Calendar</a>
