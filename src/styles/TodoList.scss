@@ -48,17 +48,17 @@ padding: 0;
     }
 }
 
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid #ccc;
-  background-color: vars.$primary-color;
-  color: white;
-  margin-bottom: 0.5rem;
-  border-radius: 4px;
+// .todo-item {
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 1rem;
+//   border-bottom: 1px solid #ccc;
+//   background-color: vars.$primary-color;
+//   color: white;
+//   margin-bottom: 0.5rem;
+//   border-radius: 4px;
 
-  &:hover {
-    background-color: vars.$secondary-color;
-  }
-}
+//   &:hover {
+//     background-color: vars.$secondary-color;
+//   }
+// }
