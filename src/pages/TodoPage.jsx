@@ -22,7 +22,7 @@ const TodoPage = () => {
       <Link to="/todos/create">
         <button className="todo-create-button">Create New List</button>
       </Link>
-      <div className="todo-list-container">
+      {/* <div className="todo-list-container">
         {todoLists.length === 0 ? (
           <p>No To-Do lists available.</p>
         ) : (
@@ -34,7 +34,7 @@ const TodoPage = () => {
             </div>
           ))
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
