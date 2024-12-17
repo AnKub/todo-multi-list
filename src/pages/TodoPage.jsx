@@ -18,7 +18,7 @@ const TodoPage = () => {
 
   return (
     <div className="todo-page">
-      <h1>tsks</h1>
+      <h1>To-Do`s</h1>
       <Link to="/todos/create">
         <button className="todo-create-button">Create New List</button>
       </Link>

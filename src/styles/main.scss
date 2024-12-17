@@ -10,7 +10,9 @@
 body {
   font-family: vars.$font-family;
   font-size: 1rem;
-  background-color: vars.$background-color;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
   margin: 0;
   padding: 0;
   color: vars.$text-color;

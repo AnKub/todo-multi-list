@@ -1,3 +1,25 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --header-background: #f0f0f0;
+  --header-text-color: #000000;
+}
+
+// Темна тема
+[data-theme="dark"] {
+  --background-color: #181818;
+  --text-color: #ffffff;
+  --header-background: #202020;
+  --header-text-color: #ffffff;
+}
+
+// Загальні змінні
+$font-family: "Space Grotesk", Arial, sans-serif;
+
+
+
+
+
 $primary-color: #050636;
 $secondary-color: #f4931d;
 $background-color: #0b2024;

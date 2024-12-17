@@ -37,15 +37,15 @@
   opacity: 0;
 
   .registration-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
   }
 
   .registration-text {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.5;
-  }
+    }
 }
 
 /* Правая часть с формой */
@@ -130,9 +130,12 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
+    .register-button, .login-button{
+    background-color:#388e3c;
+    }
 
     /* Общие стили для кнопок */
-    .form-button,
+    .form-button,.register-button,
     .login-button {
       flex: 1;
       max-width: 200px;
@@ -146,7 +149,7 @@
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
       &:hover {
-        background: #333;
+        background:orange;
         box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.5);
       }
 
@@ -155,18 +158,7 @@
         cursor: not-allowed;
       }
     }
-
-    /* Стили для кнопки "Login" */
-    .login-button {
-      background-color: #4caf50;
-
-      &:hover {
-        background-color: #388e3c;
-        box-shadow: 0 0 6px #4caf50;
-      }
-    }
   }
-
   /* Общий контейнер для каждого поля */
   .registration-field {
     display: flex;

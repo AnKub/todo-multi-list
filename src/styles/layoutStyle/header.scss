@@ -7,12 +7,13 @@
   background: linear-gradient(280deg, #02053b,#048263, #03101c,#001c21);
   background-size: 600% 600%;
   animation: colorShift 30s infinite;
-  color: white;
+  color: var(--header-text-color);
   display: flex;
   font-family: "Space Grotesk", Arial, sans-serif;
   font-weight: 500;
   font-size: 1rem;
   z-index: 1000;
+  justify-content: space-between;
 
   h2 {
     padding-left: 1.5rem;
@@ -32,3 +33,26 @@
     }
   }
 }
+.theme-toggle {
+  background: transparent;
+  border: 0.5px solid #07a67f;
+  padding: 0.5rem 1rem;
+  margin-right: 1.5rem;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 0.5rem;
+    color: #07a67f;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--text-color);
+    color: var(--background-color);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
