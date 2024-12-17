@@ -1,19 +1,20 @@
 .sidebar {
-  background-color: #03101c;
-  color: white;
+  background-color: var(--background-color1);
+  color: var(--background-color);
   width: 9vw;
+  position: relative;
   transition: width 0.5s ease-in-out;
   overflow: hidden;
 
   ul {
     list-style: none;
-    padding: 3.5rem 2rem;
+    padding: 4rem 2rem;
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
 
       a {
-        color: white;
+        color: var(--text-color);
         text-decoration: none;
         font-family: "Space Grotesk", Arial, sans-serif;
         font-size: 1rem;
@@ -27,27 +28,74 @@
   }
 
   &.collapsed {
-    width: 30px; /* Узкий сайдбар */
+    width: 30px;
   }
 
   .toggle-button {
     position: absolute;
-    top: 11%;
-    left: 8%;
-    width: 22px;
-    height: 22px;
+    top: 15%;
+    transform: translateY(-50%);
+    right: 0px;
+    width: 34px;
+    height:34px;
+    border: none;
     border-radius: 50%;
-    background-color: #001c21;
-    color: #07a67f;
-    font-weight: 500;
+    background:none;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    overflow: hidden;
 
     &:hover {
-      background-color: #07a67f;
-      color: #001c21;
+      width: 37px;
+    height: 37px;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      width: 34px;
+      height: 34px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .icon-left {
+        transform: translateX(10px);
+        opacity: 0;
+      }
+
+      .icon-right {
+        transform: translateX(-10px);
+        opacity: 0;
+      }
+    }
+
+    &.icon-collapsed .icon-left {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &.icon-collapsed .icon-right {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+
+    &.icon-expanded .icon-right {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &.icon-expanded .icon-left {
+      transform: translateX(-10px);
+      opacity: 0;
     }
   }
 }

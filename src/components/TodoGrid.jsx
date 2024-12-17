@@ -45,7 +45,7 @@ const TodoGrid = () => {
 
   return (
     <div className="todo-grid-container">
-      <h1 className="todo-grid-title">My TODO</h1>
+      <h2 className="todo-grid-title">Todos</h2>
       <div className="todo-grid-input-section">
         <input
           type="text"

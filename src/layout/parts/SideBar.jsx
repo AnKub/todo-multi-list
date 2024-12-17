@@ -4,8 +4,17 @@ import "../../styles/layoutStyle/sidebar.scss";
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   return (
     <aside className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-      <button className="toggle-button" onClick={toggleSidebar}>
-        {isCollapsed ? ">" : "<"}
+      <button
+        className={`toggle-button ${isCollapsed ? "icon-collapsed" : "icon-expanded"}`}
+        onClick={toggleSidebar}
+      >
+        <span className="icon-wrapper">
+          {isCollapsed ? (
+            <img src="/img/left.svg" alt="Open Sidebar" className="icon-left" />
+          ) : (
+            <img src="/img/herre.svg" alt="Close Sidebar" className="icon-right" />
+          )}
+        </span>
       </button>
       {!isCollapsed && (
         <ul>

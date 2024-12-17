@@ -4,10 +4,10 @@
   left: 0;
   width: 100%;
   height: 8%;
-  background: linear-gradient(280deg, #02053b,#048263, #03101c,#001c21);
+  background: linear-gradient(280deg, #02053b, #048263, #03101c, #001c21);
   background-size: 600% 600%;
   animation: colorShift 30s infinite;
-  color: var(--header-text-color);
+  color: var(--text-color);
   display: flex;
   font-family: "Space Grotesk", Arial, sans-serif;
   font-weight: 500;
@@ -33,26 +33,75 @@
     }
   }
 }
+
 .theme-toggle {
-  background: transparent;
-  border: 0.5px solid #07a67f;
-  padding: 0.5rem 1rem;
+  background:none;
+  border: none;
+  padding: 0.5rem 0.7rem;
   margin-right: 1.5rem;
   font-family: "Space Grotesk", Arial, sans-serif;
-  font-size: 0.5rem;
-    color: #07a67f;
+  font-size: 0.3rem;
+
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
-    background: var(--text-color);
+    // background: var(--text-color);
     color: var(--background-color);
     transform: scale(1.05);
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.80);
+  }
+
+  .icon-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .moon-icon {
+      transform: translateX(10px); // Початковий зсув вправо
+      opacity: 0;
+    }
+
+    .sun-icon {
+      transform: translateX(-10px); // Початковий зсув вліво
+      opacity: 0;
+    }
+  }
+
+  // Анімація для переходу теми
+  &.animate-light .moon-icon {
+    transform: translateX(0); // Плавний прихід на місце
+    opacity: 1;
+  }
+
+  &.animate-light .sun-icon {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+
+  &.animate-dark .sun-icon {
+    transform: translateX(0); // Плавний прихід на місце
+    opacity: 1;
+  }
+
+  &.animate-dark .moon-icon {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
-

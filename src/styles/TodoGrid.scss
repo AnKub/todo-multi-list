@@ -1,38 +1,41 @@
 @use './Variables' as vars;
 
 .todo-grid-container {
-  padding: 20px;
+  padding: 3rem;
   justify-content: center;
   align-items: center;
 }
 
 .todo-grid-title {
   font-size: 1.5rem;
-  margin: 1.5rem 0rem;
-  color: #ffffff;
-  letter-spacing: 3px;
+  margin-left: 30vw;
+  color: var(--text-color);
+  letter-spacing: 1px;
 }
 
 
 .todo-grid-input {
   width: 25%;
   padding: 0.7rem;
+  color: var(--header-background);
   border-radius: 30px;
-  background-color: #03101c;
+  background-color: var(--background-color1);
   border: 1px solid #f58d05;
 
-  &:hover {    
-    color: white;
+  &:hover, :active{    
+    color: var(--text-color);
     margin-top: -5px;
+    border-color: var(--bg-button);
     -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0); 
     box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0);
   }
+
 }
 
 .todo-grid-button {
   margin: 1rem ;
   padding: 0.5rem 1rem;
-  background-color: #03101c;
+  background-color: var(--background-color1);
   border: 1px solid #f58d05;
   color: white;
   border: none;
@@ -60,11 +63,11 @@
   height: auto;
   text-align: center;
   cursor: pointer;
-  background-color: #03101c;
+  background-color: var(--background-color1);
   border: 1px solid #f58d05;
 
   &:hover {    
-    color: white;
+    color: var(--text-color);
     margin-top: -5px;
     -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0); 
     box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0);
@@ -82,7 +85,7 @@
   margin-left: 70%;
   padding: 0.3rem 0.5rem;
   font-size: 0.8rem;
-  background-color:#07a67f;
+  background-color:var(--bg-button);
   color: white;
   border: none;
   border-radius: 30px;

@@ -20,22 +20,14 @@ const Header = () => {
   return (
     <header className="header">
       <h2>Multi-Todo</h2>
-      <button className="theme-toggle" onClick={toggleTheme}>
-        {theme === "light" ? (
-          <img
-            src="/img/moon.svg"
-            alt="Moon Icon"
-            width="24"
-            height="24"
-          />
-        ) : (
-          <img
-            src="/img/sun.svg"
-            alt="Sun Icon"
-            width="24"
-            height="24"
-          />
-        )}
+      <button className={`theme-toggle ${theme === "light" ? "animate-light" : "animate-dark"}`} onClick={toggleTheme}>
+        <span className="icon-wrapper">
+          {theme === "light" ? (
+            <img src="/img/moon.svg" alt="Moon Icon" className="moon-icon" />
+          ) : (
+            <img src="/img/sun.svg" alt="Sun Icon" className="sun-icon" />
+          )}
+        </span>
       </button>
     </header>
   );
