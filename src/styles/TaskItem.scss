@@ -4,14 +4,14 @@
   justify-content: space-between;
   padding: 10px 15px;
   max-width: 50%;
-  color: white;
-  background-color: #03101c;
+  color: var(--text-color);
+  background-color: var(--background-color1);
   border: 1px solid #f58d05;
   border-radius: 30px;
   margin-bottom: 10px;
 
   &:hover {
-    background-color: #f58d05;
+    background-color: #f4931d;;
     border: 1px solid #03101c;
   }
 
@@ -44,7 +44,7 @@
 
   .task-item-delete {
     padding: 5px;
-    background-color: darkred;
+    background-color: var(--bg-button);
     color: white;
     border: none;
     border-radius: 30px;

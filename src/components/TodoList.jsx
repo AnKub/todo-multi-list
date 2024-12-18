@@ -64,9 +64,9 @@ const TodoList = () => {
   };
 
   return (
-    <div className="todo-list">
+    <div className="todo-list">         
       <h2 className="todo-list-title">{listName}</h2> {/* Відображаємо назву списку */}
-      <div className="todo-list-input-container">
+        <div className="todo-list-input-container">
         <input
           type="text"
           placeholder="Task title"
@@ -76,10 +76,7 @@ const TodoList = () => {
         />
         <button onClick={addTask} className="todo-grid-button">
           Add Task
-        </button>
-        <button onClick={() => navigate("/todos")} className="todo-grid-button">
-          Back
-        </button>
+        </button>      
       </div>
       <div className="todo-items-container">
         {tasks.map((task) => (
@@ -92,9 +89,12 @@ const TodoList = () => {
           />
         ))}
       </div>
-      <div className="todo-list-actions">
+      <div className="todo-list-actions">      
         <button onClick={saveTasks} className="todo-grid-button">
           Save
+        </button>
+        <button onClick={() => navigate("/todos")} className="todo-grid-button button-back">
+          Back
         </button>
       </div>
     </div>

@@ -1,14 +1,34 @@
 .sidebar {
-  background-color: var(--background-color1);
+
   color: var(--background-color);
   width: 9vw;
   position: relative;
+  margin-top: 9vh;
+  margin-left: 0.5rem;
   transition: width 0.5s ease-in-out;
   overflow: hidden;
+  height: 30vh;
+  border-radius: 0% 0% 8% 8%;
+  background: linear-gradient(290deg,  var(--background-color), var(--bg-button), var(--background-color1));
+  background-size: 600% 600%;
+  animation: colorShift 40s infinite;
+  box-shadow: 0px 0px 7px 0px #f4931d;
+
+  @keyframes colorShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   ul {
     list-style: none;
-    padding: 4rem 2rem;
+    padding: 1rem 2rem;
 
     li {
       margin-bottom: 15px;
@@ -18,10 +38,11 @@
         text-decoration: none;
         font-family: "Space Grotesk", Arial, sans-serif;
         font-size: 1rem;
+        font-weight: 500;
         transition: color 0.5s ease-in-out;
 
         &:hover {
-          color: #00ffcc;
+          color: var(--header-text-color);
         }
       }
     }
@@ -29,6 +50,10 @@
 
   &.collapsed {
     width: 30px;
+    height: 8%;
+    margin-top: 5%;
+    transition: 0.5s ease-in-out;
+    border-radius:25%;
   }
 
   .toggle-button {
@@ -39,9 +64,9 @@
     width: 34px;
     height:34px;
     border: none;
-    border-radius: 50%;
+    // border-radius: 50%;
     background:none;
-    border: none;
+        border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +82,7 @@
       position: relative;
       width: 34px;
       height: 34px;
-
+     
       img {
         position: absolute;
         top: 0;
@@ -74,17 +99,20 @@
 
       .icon-right {
         transform: translateX(-10px);
+      
         opacity: 0;
       }
     }
 
     &.icon-collapsed .icon-left {
       transform: translateX(0);
+      transition: 0.5s ease-in-out;
       opacity: 1;
     }
 
     &.icon-collapsed .icon-right {
       transform: translateX(10px);
+      transition: 0.5s ease-in-out;
       opacity: 0;
     }
 

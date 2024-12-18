@@ -12,7 +12,10 @@ body {
   font-size: 1rem;
   background-color: var(--background-color);
   color: var(--text-color);
-
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   color: vars.$text-color;
@@ -22,4 +25,5 @@ body {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
+  flex: 1;
 }
