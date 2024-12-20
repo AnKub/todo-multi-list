@@ -80,13 +80,13 @@ const TodoList = () => {
       </div>
       <div className="todo-items-container">
         {tasks.map((task) => (
-          // <TaskItem
-          //   key={task.id}
-          //   task={task}
-          //   onDelete={deleteTask}
-          //   onToggle={toggleTask}
-          //   onUpdate={(taskId, newTitle) => updateTask(taskId, newTitle)}
-          // />
+          <TaskItem
+            key={task.id}
+            task={task}
+            onDelete={deleteTask}
+            onToggle={toggleTask}
+            onUpdate={(taskId, newTitle) => updateTask(taskId, newTitle)}
+          />
         ))}
       </div>
       <div className="todo-list-actions">      
