@@ -9,7 +9,7 @@
 .todo-grid-title {
   font-size: 1.5rem;
   margin-left: 30vw;
-  color: var(--text-color);
+  color: var(--background-color1);
   letter-spacing: 1px;
 }
 
@@ -29,7 +29,6 @@
     -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0); 
     box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0);
   }
-
 }
 
 .todo-grid-button {

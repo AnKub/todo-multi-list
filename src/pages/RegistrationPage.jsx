@@ -74,7 +74,9 @@ const RegistrationPage = () => {
                 onChange={handleInputChange}
                 required
               />
-              {error[field] && <p className="registration-error">{error[field]}</p>}
+              <div className="error-container">
+                {error[field] && <p className="registration-error">{error[field]}</p>}
+              </div>
             </div>
           ))}
           <div className="registration-field">
@@ -97,13 +99,15 @@ const RegistrationPage = () => {
                 required
               />
             </div>
-            {error.password && <p className="registration-error">{error.password}</p>}
+            <div className="error-container">
+              {error.password && <p className="registration-error">{error.password}</p>}
+            </div>
           </div>
           <div className="button-group">
             <button className="form-button register-button" type="submit" disabled={!isFormValid}>
               Register
             </button>
-              <button
+            <button
               className="form-button login-button"
               type="button"
               onClick={() => navigate("/login")}>

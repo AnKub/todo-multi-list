@@ -23,9 +23,9 @@ const Header = () => {
       <button className={`theme-toggle ${theme === "light" ? "animate-light" : "animate-dark"}`} onClick={toggleTheme}>
         <span className="icon-wrapper">
           {theme === "light" ? (
-            <img src="/img/moon.svg" alt="Moon Icon" className="moon-icon" />
+            <img src="/img/sun.svg" alt="Moon Icon" className="moon-icon" />
           ) : (
-            <img src="/img/sun.svg" alt="Sun Icon" className="sun-icon" />
+            <img src="/img/moon.svg" alt="Sun Icon" className="sun-icon" />
           )}
         </span>
       </button>
