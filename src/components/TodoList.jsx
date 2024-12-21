@@ -8,7 +8,7 @@ const TodoList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
-  const [listName, setListName] = useState(""); // Додаємо стан для назви списку
+  const [listName, setListName] = useState(""); 
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
   // Завантажуємо список і його назву
@@ -16,7 +16,7 @@ const TodoList = () => {
     const currentList = getTodoListById(id);
     if (currentList) {
       setListName(currentList.name || "Unnamed List"); // Встановлюємо назву
-      setTasks(currentList.tasks || []); // Встановлюємо задачі
+      setTasks(currentList.tasks || []); 
     } else {
       alert("List not found! Returning to grid.");
       navigate("/todos");

@@ -12,7 +12,7 @@ const Header = () => {
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
-  // Ініціалізація теми
+  //теми
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);

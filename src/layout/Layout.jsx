@@ -15,18 +15,13 @@ const Layout = () => {
 
   return (
     <div className="layout">
-      {/* Header остается на месте */}
       <Header />
-
-      {/* Основной контент с Sidebar */}
       <div className={`main-content ${isCollapsed ? "collapsed" : ""}`}>
         <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
         <main className="content">
           <Outlet />
         </main>
       </div>
-
-      {/* Footer остается на месте */}
       <Footer />
     </div>
   );

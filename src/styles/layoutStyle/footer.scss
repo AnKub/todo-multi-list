@@ -6,8 +6,8 @@
   color: var(--bg-button);
   font-family: "Space Grotesk", Arial, sans-serif;
   padding: 10px;
-  flex-shrink: 0; /* Не дозволяє футеру "стискатися" */
-  position: sticky; /* Закріплює футер у нижній частині */
+  flex-shrink: 0; 
+  position: sticky; 
   bottom: 0;
 
   .footer-logo {

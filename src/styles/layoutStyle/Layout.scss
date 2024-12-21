@@ -9,11 +9,11 @@
     transition: margin-left 0.3s ease-in-out;
 
     &.collapsed .content {
-      margin-left: 60px; /* Отступ при свёрнутом Sidebar */
+      margin-left: 60px; 
     }
 
     .content {
-      flex-grow: 1; /* Контент занимает оставшееся место */
+      flex-grow: 1;
       padding: 20px;
     }
   }

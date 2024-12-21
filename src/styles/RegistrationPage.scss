@@ -1,14 +1,13 @@
 @use './Variables' as vars;
 @use './animation.scss';
 
-/* Основная обертка страницы */
+
 .registration-page {
   display: flex;
   min-width: 100vw;
   min-height: 100vh;
   overflow: hidden;
 
-  /* Анимация появления при загрузке */
   &.loaded .registration-left-side,
   &.loaded .registration-right-side {
     transform: translateX(0);
@@ -22,7 +21,7 @@
   }
 }
 
-/* Левая часть с изображением и текстом */
+
 .registration-left-side {
   flex: 1;
   background: url('../../public/img/bgreggy.png') center/cover no-repeat;
@@ -48,7 +47,6 @@
     }
 }
 
-/* Правая часть с формой */
 .registration-right-side {
   flex: 1;
   display: flex;
@@ -81,7 +79,6 @@
     flex-direction: column;
     gap: 1.5rem;
 
-    /* Общие стили для полей формы */
     .form-input {
       width: 100%;
       padding: 1rem;
@@ -101,7 +98,7 @@
       }
     }
 
-    /* Обертка для пароля */
+ 
     .password-container {
       max-width: 100vw;
       position: relative;
@@ -123,7 +120,6 @@
       }
     }
 
-    /* Группа кнопок */
     .button-group {
       display: flex;
       justify-content: center;
@@ -134,7 +130,6 @@
     background-color:#388e3c;
     }
 
-    /* Общие стили для кнопок */
     .form-button,.register-button,
     .login-button {
       flex: 1;
@@ -159,7 +154,7 @@
       }
     }
   }
-  /* Общий контейнер для каждого поля */
+
   .registration-field {
     display: flex;
     flex-direction: column;
@@ -172,11 +167,10 @@
   }
 }
 
-/* Адаптивность */
 @media (max-width: 1024px) {
   .registration-page {
     display: flex;
-    flex-direction: column; /* Для правильной прокрутки на маленьких экранах */
+    flex-direction: column; 
     width: 100vw;
     min-height: 100vh;
     overflow-y: auto;
