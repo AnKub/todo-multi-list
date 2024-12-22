@@ -8,7 +8,7 @@ const TodoGrid = () => {
   const [newListName, setNewListName] = useState("");
   const navigate = useNavigate();
 
-  // Загружаем список todo из localStorage при монтировании компонента
+  // Загружаем список todo из localStorage
   useEffect(() => {
     const lists = getTodoLists();
     setTodoLists(lists);
