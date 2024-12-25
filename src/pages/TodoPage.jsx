@@ -24,7 +24,7 @@ const TodoPage = () => {
       </Link>
       <div className="todo-list-container">
         {todoLists.length === 0 ? (
-          <p>No To-Do lists available.</p>
+          <p>No To-Do available.</p>
         ) : (
           todoLists.map((list) => (
             <div key={list.id} className="todo-list-item">
