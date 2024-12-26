@@ -1,0 +1,52 @@
+@use './Variables' as vars;
+@use './animation.scss';
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--background-color1);
+    animation: fade-in 0.5s ease-in-out;
+
+    .landing-title {
+        font-size: 3rem;
+        color: var(--text-color);
+        margin-bottom: 2rem;
+        animation: slide-down 0.7s ease-in-out;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 2rem;
+
+        .landing-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: none;
+            background: var(--background-color1);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            animation: grow-in 0.8s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: transform 0.2s ease-in-out;
+                background: var(--bg-button);
+            }
+
+            &.register-button {
+                background: var(--bg-button);  // Замініть на вашу змінну успішного кольору
+            }
+
+            &.login-button {
+                background: var(--bg-button);  // Замініть на вашу змінну кольору для входу
+            }
+        }
+    }
+}

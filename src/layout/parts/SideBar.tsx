@@ -1,7 +1,12 @@
 import React from "react";
 import "../../styles/layoutStyle/sidebar.scss";
 
-const Sidebar = ({ isCollapsed, toggleSidebar }) => {
+interface SidebarProps {
+  isCollapsed: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, toggleSidebar }) => {
   return (
     <aside className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <button

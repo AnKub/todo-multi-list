@@ -1,45 +1,40 @@
+// TodoGrid.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTodoLists, saveTodoLists } from "../utils/localStorageUtils";
+import { TodoList} from "../types";
+import { getTodoLists, saveTodoLists } from "../localStorageUtils";
 import "../styles/TodoGrid.scss";
 
-const TodoGrid = () => {
-  const [todoLists, setTodoLists] = useState([]);
+const TodoGrid: React.FC = () => {
+  const [todoLists, setTodoLists] = useState<TodoList[]>([]);
   const [newListName, setNewListName] = useState("");
   const navigate = useNavigate();
 
-  // Загружаем список todo из localStorage
   useEffect(() => {
     const lists = getTodoLists();
     setTodoLists(lists);
   }, []);
 
-  // Сохраняем измененные списки в localStorage при изменении состояния todoLists
   useEffect(() => {
-    if (todoLists.length > 0) {
-      saveTodoLists(todoLists);
-    }
+    saveTodoLists(todoLists);
   }, [todoLists]);
 
-  // Добавление нового списка
   const addTodoList = () => {
     if (newListName.trim()) {
-      const newList = { id: Date.now(), name: newListName, tasks: [] };
+      const newList: TodoList = { id: Date.now(), name: newListName, tasks: [] };
       setTodoLists((prevLists) => [...prevLists, newList]);
-      setNewListName(""); 
+      setNewListName("");
     } else {
       alert("List name is required");
     }
   };
 
-  // Удаление списка
-  const deleteTodoList = (listId, event) => {
-    event.stopPropagation(); 
+  const deleteTodoList = (listId: number, event: React.MouseEvent) => {
+    event.stopPropagation();
     setTodoLists((prevLists) => prevLists.filter((list) => list.id !== listId));
   };
 
-  // Открытие выбранного списка
-  const openTodoList = (listId) => {
+  const openTodoList = (listId: number) => {
     navigate(`/todos/${listId}`);
   };
 

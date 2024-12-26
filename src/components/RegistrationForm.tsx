@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const RegistrationForm = () => {
-  const [formData, setFormData] = useState({username:"",email: "", password: ""});
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+}
+
+const RegistrationForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({ username: "", email: "", password: "" });
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    if(formData.username && formData.email && formData.password) {
+    if (formData.username && formData.email && formData.password) {
       navigate("/todos");
-    }else{
+    } else {
       alert("Please fill in all fields");
     }
   };
- 
+
   return (
     <form onSubmit={handleRegister} className="registration-form">
       <h2 className="registration-title">Register</h2>

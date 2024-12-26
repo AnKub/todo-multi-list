@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/RegistrationPage.scss";
 import "../styles/main.scss";
+import { RegistrationFormData, RegistrationError } from "../types";
 
-const RegistrationPage = () => {
-  const [formData, setFormData] = useState({ username: "", email: "", password: "" });
-  const [error, setError] = useState({ username: "", email: "", password: "" });
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+const RegistrationPage: React.FC = () => {
+  const [formData, setFormData] = useState<RegistrationFormData>({ username: "", email: "", password: "" });
+  const [error, setError] = useState<RegistrationError>({ username: "", email: "", password: "" });
+  const [isPageLoaded, setIsPageLoaded] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
@@ -20,9 +20,9 @@ const RegistrationPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     let errorMessage = "";
     if (name === "username" && !usernameRegex.test(value)) {
@@ -30,20 +30,18 @@ const RegistrationPage = () => {
     } else if (name === "email" && !emailRegex.test(value)) {
       errorMessage = "Invalid email.";
     } else if (name === "password" && !passwordRegex.test(value)) {
-      errorMessage = "Password must contain at least 6 characters with letters and numbers.";
+      errorMessage = "Password must contain at least 6 characters.";
     }
 
-    setError((prevError) => ({ ...prevError, [name]: errorMessage }));
-    setIsFormValid(
-      usernameRegex.test(formData.username) &&
-      emailRegex.test(formData.email) &&
-      passwordRegex.test(formData.password)
-    );
+    setError((prev) => ({ ...prev, [name]: errorMessage }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid) return;
+
+    if (Object.values(error).some((err) => err) || Object.values(formData).some((value) => !value)) {
+      return;
+    }
 
     localStorage.setItem("currentUser", formData.username);
     localStorage.setItem(`todoLists_${formData.username}`, JSON.stringify([]));
@@ -60,22 +58,20 @@ const RegistrationPage = () => {
         <h2 className="form-title">Welcome</h2>
         <p className="form-text">Join and save your time</p>
         <form className="registration-form" onSubmit={handleSubmit}>
-          {["username", "email"].map((field) => (
+          {[{ field: "username", label: "Username", type: "text" }, { field: "email", label: "Email", type: "text" }].map(({ field, label, type }) => (
             <div key={field} className="registration-field">
-              <label className="form-label" htmlFor={field}>
-                {field.charAt(0).toUpperCase() + field.slice(1)}
-              </label>
+              <label className="form-label" htmlFor={field}>{label}</label>
               <input
                 className="form-input"
-                type="text"
+                type={type}
                 id={field}
                 name={field}
-                value={formData[field]}
+                value={formData[field as keyof RegistrationFormData]}
                 onChange={handleInputChange}
                 required
               />
               <div className="error-container">
-                {error[field] && <p className="registration-error">{error[field]}</p>}
+                {error[field as keyof RegistrationError] && <p className="registration-error">{error[field as keyof RegistrationError]}</p>}
               </div>
             </div>
           ))}
@@ -104,7 +100,7 @@ const RegistrationPage = () => {
             </div>
           </div>
           <div className="button-group">
-            <button className="form-button register-button" type="submit" disabled={!isFormValid}>
+            <button className="form-button register-button" type="submit" disabled={Object.values(error).some((err) => err) || Object.values(formData).some((value) => !value)}>
               Register
             </button>
             <button

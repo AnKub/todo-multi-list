@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getTodoLists, saveTodoLists } from "../localStorageUtils";
 
-const CreateTodoListPage = () => {
-  const [listName, setListName] = useState("");
+const CreateTodoListPage: React.FC = () => {
+  const [listName, setListName] = useState<string>(""); // listName as a string
   const navigate = useNavigate();
 
   const handleCreate = () => {
@@ -17,8 +18,9 @@ const CreateTodoListPage = () => {
       tasks: [],
     };
 
-    const existingLists = JSON.parse(localStorage.getItem("todoLists")) || [];
-    localStorage.setItem("todoLists", JSON.stringify([...existingLists, newList]));
+    const existingLists = getTodoLists();
+    existingLists.push(newList); // add new list
+    saveTodoLists(existingLists); // save the updated lists
 
     navigate("/todos");
   };

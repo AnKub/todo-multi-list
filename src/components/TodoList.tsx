@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
-import { getTodoListById, saveTodoListTasks } from "../utils/localStorageUtils";
+import { getTodoListById, saveTodoListTasks } from "../localStorageUtils";
 import "../styles/main.scss";
 
-const TodoList = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [tasks, setTasks] = useState([]);
-  const [listName, setListName] = useState(""); 
-  const [newTaskTitle, setNewTaskTitle] = useState("");
+// Define the type for Task
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
-  // Завантажуємо список і його назву
+const TodoList: React.FC = () => {
+  const { id } = useParams<{ id: string }>(); // id from route params, typed as string
+  const navigate = useNavigate();
+  const [tasks, setTasks] = useState<Task[]>([]); // tasks typed as an array of Task
+  const [listName, setListName] = useState<string>(""); // listName as a string
+  const [newTaskTitle, setNewTaskTitle] = useState<string>(""); // newTaskTitle as a string
+
   useEffect(() => {
     const currentList = getTodoListById(id);
     if (currentList) {
-      setListName(currentList.name || "Unnamed List"); // Встановлюємо назву
-      setTasks(currentList.tasks || []); 
+      setListName(currentList.name || "Unnamed List");
+      setTasks(currentList.tasks || []);
     } else {
       alert("List not found! Returning to grid.");
       navigate("/todos");
@@ -25,7 +31,7 @@ const TodoList = () => {
 
   const addTask = () => {
     if (newTaskTitle.trim()) {
-      const newTask = { id: Date.now(), title: newTaskTitle, completed: false };
+      const newTask: Task = { id: Date.now(), title: newTaskTitle, completed: false };
       setTasks((prevTasks) => [...prevTasks, newTask]);
       setNewTaskTitle("");
     } else {
@@ -38,11 +44,11 @@ const TodoList = () => {
     alert("Tasks saved successfully!");
   };
 
-  const deleteTask = (taskId) => {
+  const deleteTask = (taskId: number) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
-  const toggleTask = (taskId) => {
+  const toggleTask = (taskId: number) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId ? { ...task, completed: !task.completed } : task
@@ -50,7 +56,7 @@ const TodoList = () => {
     );
   };
 
-  const updateTask = (taskId, newTitle) => {
+  const updateTask = (taskId: number, newTitle: string) => {
     if (typeof newTitle !== "string") {
       console.error("Invalid newTitle:", newTitle);
       return;
@@ -64,9 +70,9 @@ const TodoList = () => {
   };
 
   return (
-    <div className="todo-list">         
-      <h2 className="todo-list-title">{listName}</h2> {/* Відображаємо назву списку */}
-        <div className="todo-list-input-container">
+    <div className="todo-list">
+      <h2 className="todo-list-title">{listName}</h2>
+      <div className="todo-list-input-container">
         <input
           type="text"
           placeholder="Task title"
@@ -76,7 +82,7 @@ const TodoList = () => {
         />
         <button onClick={addTask} className="todo-grid-button">
           Add Task
-        </button>      
+        </button>
       </div>
       <div className="todo-items-container">
         {tasks.map((task) => (
@@ -85,17 +91,15 @@ const TodoList = () => {
             task={task}
             onDelete={deleteTask}
             onToggle={toggleTask}
-            onUpdate={(taskId, newTitle) => updateTask(taskId, newTitle)}
+            onUpdate={updateTask}
           />
         ))}
       </div>
-      <div className="todo-list-actions">      
-        <button onClick={saveTasks} className="todo-grid-button">
-          Save
+      <div className="todo-list-actions">
+        <button onClick={saveTasks} className="save-button">
+          Save Tasks
         </button>
-        <button onClick={() => navigate("/todos")} className="todo-grid-button button-back">
-          Back
-        </button>
+        <button onClick={() => navigate("/todos")}>Back to Lists</button>
       </div>
     </div>
   );

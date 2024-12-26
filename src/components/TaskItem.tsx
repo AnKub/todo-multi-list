@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { TaskItemProps } from "../types";
 import "../styles/main.scss";
 
-const TaskItem = ({ task, onDelete, onToggle, onUpdate }) => {
+const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title || "");
 
@@ -24,32 +25,23 @@ const TaskItem = ({ task, onDelete, onToggle, onUpdate }) => {
           className="task-item-edit-input"
         />
       ) : (
-        <span
-          onClick={() => onToggle(task.id)}
-          className="task-item-title"
-        >
+        <span onClick={() => onToggle(task.id)} className="task-item-title">
           {task.title}
         </span>
-      )}    
-      <div className="task-buttom">      
-      {isEditing ? (
-        <button onClick={handleUpdate} className="task-item-save">
-          Save
+      )}
+      <div className="task-buttom">
+        {isEditing ? (
+          <button onClick={handleUpdate} className="task-item-save">
+            Save
+          </button>
+        ) : (
+          <button onClick={() => setIsEditing(true)} className="task-item-edit">
+            Edit
+          </button>
+        )}
+        <button onClick={() => onDelete(task.id)} className="task-item-delete">
+          Del
         </button>
-      ) : (
-        <button
-          onClick={() => setIsEditing(true)}
-          className="task-item-edit"
-        >
-          Edit
-        </button>      
-      )}    
-      <button
-        onClick={() => onDelete(task.id)}
-        className="task-item-delete"
-      >
-        Del
-      </button>
       </div>
     </div>
   );

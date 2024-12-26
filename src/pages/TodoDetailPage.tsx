@@ -1,62 +1,75 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { TodoList, Task } from "../types"; 
 
 const TodoDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [list, setList] = useState(null);
-  const [newTask, setNewTask] = useState("");
-  const [editingTask, setEditingTask] = useState(null);
-  const [editTaskText, setEditTaskText] = useState("");
 
+  const [list, setList] = useState<TodoList | null>(null);
+  const [newTask, setNewTask] = useState<string>("");
+  const [editingTask, setEditingTask] = useState<number | null>(null);
+  const [editTaskText, setEditTaskText] = useState<string>("");
+
+  // Завантажуємо список задач з localStorage при зміні id
   useEffect(() => {
-    const storedLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+    const storedLists: TodoList[] = JSON.parse(localStorage.getItem("todoLists") || "[]");
     const foundList = storedLists.find((list) => list.id === Number(id));
-    setList(foundList);
+    setList(foundList || null);
   }, [id]);
 
+  // Додавання нової задачі
   const handleAddTask = () => {
     if (!newTask.trim()) return;
 
-    const updatedList = {
-      ...list,
-      tasks: [...list.tasks, { id: Date.now(), text: newTask }],
-    };
-    updateLocalStorage(updatedList);
-    setNewTask("");
+    if (list) {
+      const updatedList: TodoList = {
+        ...list,
+        tasks: [...list.tasks, { id: Date.now(), title: newTask, completed: false }],
+      };
+      updateLocalStorage(updatedList);
+      setNewTask("");
+    }
   };
 
-  const handleDeleteTask = (taskId) => {
-    const updatedList = {
-      ...list,
-      tasks: list.tasks.filter((task) => task.id !== taskId),
-    };
-    updateLocalStorage(updatedList);
+  // Видалення задачі
+  const handleDeleteTask = (taskId: number) => {
+    if (list) {
+      const updatedList: TodoList = {
+        ...list,
+        tasks: list.tasks.filter((task) => task.id !== taskId),
+      };
+      updateLocalStorage(updatedList);
+    }
   };
 
-  const handleEditTask = (task) => {
+  // Початок редагування задачі
+  const handleEditTask = (task: Task) => {
     setEditingTask(task.id);
-    setEditTaskText(task.text);
+    setEditTaskText(task.title);
   };
 
-  const handleSaveEdit = (taskId) => {
-    const updatedList = {
-      ...list,
-      tasks: list.tasks.map((task) =>
-        task.id === taskId ? { ...task, text: editTaskText } : task
-      ),
-    };
-    updateLocalStorage(updatedList);
-    setEditingTask(null);
-    setEditTaskText("");
+  // Збереження змін у задачі
+  const handleSaveEdit = (taskId: number) => {
+    if (list) {
+      const updatedList: TodoList = {
+        ...list,
+        tasks: list.tasks.map((task) =>
+          task.id === taskId ? { ...task, title: editTaskText } : task
+        ),
+      };
+      updateLocalStorage(updatedList);
+      setEditingTask(null);
+      setEditTaskText("");
+    }
   };
 
-  const updateLocalStorage = (updatedList) => {
-    const allLists = JSON.parse(localStorage.getItem("todoLists")) || [];
+  // Оновлення списку в localStorage
+  const updateLocalStorage = (updatedList: TodoList) => {
+    const allLists: TodoList[] = JSON.parse(localStorage.getItem("todoLists") || "[]");
     const updatedLists = allLists.map((item) =>
       item.id === updatedList.id ? updatedList : item
     );
-
     localStorage.setItem("todoLists", JSON.stringify(updatedLists));
     setList(updatedList);
   };
@@ -96,7 +109,7 @@ const TodoDetailPage = () => {
               </>
             ) : (
               <>
-                {task.text}
+                {task.title}
                 <button onClick={() => handleEditTask(task)}>Edit</button>
                 <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
               </>
