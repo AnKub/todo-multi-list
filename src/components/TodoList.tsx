@@ -4,7 +4,6 @@ import TaskItem from "./TaskItem";
 import { getTodoListById, saveTodoListTasks } from "../localStorageUtils";
 import "../styles/main.scss";
 
-// Define the type for Task
 interface Task {
   id: number;
   title: string;
@@ -12,11 +11,11 @@ interface Task {
 }
 
 const TodoList: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // id from route params, typed as string
+  const { id } = useParams<{ id: string }>(); 
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState<Task[]>([]); // tasks typed as an array of Task
-  const [listName, setListName] = useState<string>(""); // listName as a string
-  const [newTaskTitle, setNewTaskTitle] = useState<string>(""); // newTaskTitle as a string
+  const [tasks, setTasks] = useState<Task[]>([]); 
+  const [listName, setListName] = useState<string>(""); 
+  const [newTaskTitle, setNewTaskTitle] = useState<string>(""); 
 
   useEffect(() => {
     const currentList = getTodoListById(id);
