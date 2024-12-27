@@ -58,6 +58,7 @@ const LoginPage: React.FC = () => {
             <div key={field} className="login-field">
               <label htmlFor={field}>{label}</label>
               <input
+              className="form-input"
                 type={type}
                 id={field}
                 name={field}
