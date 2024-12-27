@@ -33,7 +33,6 @@
   }
 }
 
-/* Ліва частина сторінки */
 .registration-left-side {
   width: 40vw;
   padding: 2rem;
@@ -89,7 +88,6 @@
   transition: transform 1s ease, opacity 1s ease;
 }
 
-/* Виправлення для обох блоків, щоб вони заповнювали всю ширину */
 .registration-page {
   .registration-left-side,
   .registration-right-side {
@@ -97,7 +95,6 @@
   }
 }
 
-/* Форма реєстрації */
 .registration-form {
   width: 100%;
   max-width: 50%;
