@@ -11,14 +11,12 @@ const TodoDetailPage = () => {
   const [editingTask, setEditingTask] = useState<number | null>(null);
   const [editTaskText, setEditTaskText] = useState<string>("");
 
-  // Завантажуємо список задач з localStorage при зміні id
   useEffect(() => {
     const storedLists: TodoList[] = JSON.parse(localStorage.getItem("todoLists") || "[]");
     const foundList = storedLists.find((list) => list.id === Number(id));
     setList(foundList || null);
   }, [id]);
 
-  // Додавання нової задачі
   const handleAddTask = () => {
     if (!newTask.trim()) return;
 
@@ -32,7 +30,6 @@ const TodoDetailPage = () => {
     }
   };
 
-  // Видалення задачі
   const handleDeleteTask = (taskId: number) => {
     if (list) {
       const updatedList: TodoList = {
@@ -43,13 +40,11 @@ const TodoDetailPage = () => {
     }
   };
 
-  // Початок редагування задачі
   const handleEditTask = (task: Task) => {
     setEditingTask(task.id);
     setEditTaskText(task.title);
   };
 
-  // Збереження змін у задачі
   const handleSaveEdit = (taskId: number) => {
     if (list) {
       const updatedList: TodoList = {
@@ -64,7 +59,6 @@ const TodoDetailPage = () => {
     }
   };
 
-  // Оновлення списку в localStorage
   const updateLocalStorage = (updatedList: TodoList) => {
     const allLists: TodoList[] = JSON.parse(localStorage.getItem("todoLists") || "[]");
     const updatedLists = allLists.map((item) =>
