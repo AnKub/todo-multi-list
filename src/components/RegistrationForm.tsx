@@ -37,13 +37,13 @@ const RegistrationForm: React.FC = () => {
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         className="registration-input"
       />
-      <input
+      {/* <input
         type="password"
         placeholder="Password"
         value={formData.password}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         className="registration-input"
-      />
+      /> */}
       <button type="submit" className="registration-button">
         Sign Up
       </button>
