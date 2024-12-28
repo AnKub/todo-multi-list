@@ -29,7 +29,7 @@
 }
 
 .landing-left-side {
-    width: 40vw;
+    width: 55vw;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@
 }
 
 .landing-right-side {
-    width: 60vw;
+    width: 45vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,7 +80,7 @@
     opacity: 0;
     transition: transform 1s ease, opacity 1s ease;
 .form-title{
-font-size: 2.5rem;
+font-size: 2rem;
 margin-bottom: 1rem;
 max-width: 40vw;
 justify-content: center;

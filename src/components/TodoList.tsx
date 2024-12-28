@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
-import { getTodoListById, saveTodoListTasks } from "../localStorageUtils";
+import {
+  saveTodoListTasks,
+  getTodoListById
+} from "../localStorageUtils";
 import "../styles/main.scss";
-
-interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { Task} from "../types";
 
 const TodoList: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); 
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState<Task[]>([]); 
-  const [listName, setListName] = useState<string>(""); 
-  const [newTaskTitle, setNewTaskTitle] = useState<string>(""); 
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [listName, setListName] = useState<string>("");
+  const [newTaskTitle, setNewTaskTitle] = useState<string>("");
 
   useEffect(() => {
-    const currentList = getTodoListById(id);
+    const listId = Number(id);
+    const currentList = getTodoListById(listId);
     if (currentList) {
       setListName(currentList.name || "Unnamed List");
       setTasks(currentList.tasks || []);
@@ -39,7 +38,8 @@ const TodoList: React.FC = () => {
   };
 
   const saveTasks = () => {
-    saveTodoListTasks(id, tasks);
+    const listId = Number(id);
+    saveTodoListTasks(listId, tasks);
     alert("Tasks saved successfully!");
   };
 
@@ -98,7 +98,9 @@ const TodoList: React.FC = () => {
         <button onClick={saveTasks} className="save-button">
           Save Tasks
         </button>
-        <button onClick={() => navigate("/todos")}>Back to Lists</button>
+        <button onClick={() => navigate("/todos")} className="save-button">
+          Back to Lists
+        </button>
       </div>
     </div>
   );

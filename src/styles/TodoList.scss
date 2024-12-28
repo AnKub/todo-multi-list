@@ -31,17 +31,18 @@
 }
 
 .todo-list-actions{
-margin: 0;
+margin-top: 1rem;
 padding: 0;
 }
 
-  .todo-grid-button, .button-back {
+  .todo-grid-button, .button-back, .save-button {
     padding: 1rem 1rem;
     background-color: var(--bg-button);
     color: var(--text-color);
     border: 1px solid #f58d05;
     border: none;
-    border-radius: 5px;
+    margin-right: 1.5rem;
+    border-radius: 30px;
     cursor: pointer;
 
     &:hover {

@@ -1,7 +1,6 @@
-// TodoGrid.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TodoList} from "../types";
+import { TodoList } from "../types";
 import { getTodoLists, saveTodoLists } from "../localStorageUtils";
 import "../styles/TodoGrid.scss";
 
@@ -10,11 +9,17 @@ const TodoGrid: React.FC = () => {
   const [newListName, setNewListName] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
+  // Завантаження списків при першому рендері та після повернення назад
+  const loadTodoLists = () => {
     const lists = getTodoLists();
     setTodoLists(lists);
+  };
+
+  useEffect(() => {
+    loadTodoLists();
   }, []);
 
+  // Збереження списків у localStorage після кожного оновлення
   useEffect(() => {
     saveTodoLists(todoLists);
   }, [todoLists]);
