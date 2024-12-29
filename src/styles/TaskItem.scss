@@ -1,4 +1,6 @@
-.task-item{
+@use './Variables' as vars;
+
+.task-item {
   display: flex;
   align-items: center;
   letter-spacing: 1px;
@@ -12,7 +14,7 @@
   margin-bottom: 10px;
 
   &:hover {
-    background-color: #f4931d;;
+    background-color: #f4931d;
     border: 1px solid #03101c;
   }
 
@@ -32,24 +34,24 @@
       text-decoration: line-through;
     }
   }
-.task-item-edit-input{
+
+  .task-item-edit-input {
     font-weight: 600;
     letter-spacing: 1px;
     color: white;
 
-  &:hover, &:focus, &:active{    
-    color: white;
-    background-color: var(--background-color1);
+    &:hover, &:focus, &:active {
+      color: white;
+      background-color: var(--background-color1);
       border: 1px solid #03101c;
-    
+    }
   }
 
-}
-  .task-buttom{
-  display: flex;
-  justify-content: space-between;
-  align-items:flex-end;
-  gap: 10px;
+  .task-buttom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
   }
 
   .task-item-delete {
@@ -66,7 +68,9 @@
       opacity: 0.9;
     }
   }
-  .task-item-edit, .task-item-save {
+
+  .task-item-edit,
+  .task-item-save {
     min-width: 50px;
     padding: 5px;
     background-color: darkgreen;
@@ -78,6 +82,55 @@
 
     &:hover {
       opacity: 0.9;
+    }
+  }
+}
+
+// Адаптивність
+@media (max-width: 1024px) {
+  .task-item {
+    max-width: 70%; // Збільшуємо ширину для середніх екранів
+    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    .task-buttom {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .task-item {
+    max-width: 90%; // Збільшуємо ширину для маленьких екранів
+    font-size: 0.8rem;
+
+    .task-item-delete,
+    .task-item-edit,
+    .task-item-save {
+      min-width: 40px; // Зменшуємо розмір кнопок
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .task-item {
+    max-width: 100%; 
+    font-size: 0.7rem;
+    padding: 8px 10px;
+
+    .task-buttom {
+      gap: 5px;
+    }
+
+    .task-item-delete,
+    .task-item-edit,
+    .task-item-save {
+      padding: 3px;
+      min-width: 35px;
     }
   }
 }
