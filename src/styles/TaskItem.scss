@@ -1,6 +1,7 @@
 .task-item{
   display: flex;
   align-items: center;
+  letter-spacing: 1px;
   justify-content: space-between;
   padding: 10px 15px;
   max-width: 50%;
@@ -31,7 +32,19 @@
       text-decoration: line-through;
     }
   }
+.task-item-edit-input{
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
 
+  &:hover, &:focus, &:active{    
+    color: white;
+    background-color: var(--background-color1);
+      border: 1px solid #03101c;
+    
+  }
+
+}
   .task-buttom{
   display: flex;
   justify-content: space-between;
