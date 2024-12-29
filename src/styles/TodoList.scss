@@ -9,25 +9,48 @@
 .todo-list-title{
   font-size: 1.5rem;
   margin-left: 30vw;
-  color: var(--text-color);
+  color: var(--background-color1);
   letter-spacing: 1px;
 }
+
 
 .todo-list-input {
   width: 25%;
   padding: 0.7rem;
-  color: var(--header-background);
-  border-radius: 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  background-color: var(--background-color1);
+  border: 0.5px solid #f58d05;
+&::placeholder{
+  color: white;
+}
+
+  &:hover, &:focus, &:active{    
+    color: white;
+    -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px #74a9da00; 
+    box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px #74a9da00;
+  }
+ 
+}
+
+.todo-list-button, .todo-list-button-save {
+  margin: 1rem ;
+  padding: 0.5rem 1rem;
   background-color: var(--background-color1);
   border: 1px solid #f58d05;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
 
-  &:hover, :active{    
-    color: var(--text-color);
-    margin-top: -5px;
-    border-color: var(--bg-button);
+  &:hover {
     -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0); 
     box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3,16,28,0);
   }
+}
+.todo-list-button-save{
+margin-left: 0;
 }
 
 .todo-list-actions{

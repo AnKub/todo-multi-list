@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TaskItemProps } from "../types";
 import "../styles/main.scss";
+import '../styles/TaskItem.scss';
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);

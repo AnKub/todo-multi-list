@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TaskItem from "./TaskItem";
-import {
-  saveTodoListTasks,
-  getTodoListById
-} from "../localStorageUtils";
+import { getTodoListById, saveTodoListTasks } from "../localStorageUtils";
+import { Task } from "../types";
 import "../styles/main.scss";
-import { Task} from "../types";
+import '../styles/TodoList.scss';
 
 const TodoList: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [listName, setListName] = useState<string>("");
+  const [listName, setListName] = useState<string>("Unnamed List");
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
 
   useEffect(() => {
-    const listId = Number(id);
-    const currentList = getTodoListById(listId);
-    if (currentList) {
-      setListName(currentList.name || "Unnamed List");
-      setTasks(currentList.tasks || []);
+    const list = getTodoListById(Number(id));
+    if (list) {
+      setListName(list.name);
+      setTasks(list.tasks);
     } else {
-      alert("List not found! Returning to grid.");
+      alert("List not found!");
       navigate("/todos");
     }
   }, [id, navigate]);
@@ -38,70 +35,46 @@ const TodoList: React.FC = () => {
   };
 
   const saveTasks = () => {
-    const listId = Number(id);
-    saveTodoListTasks(listId, tasks);
+    saveTodoListTasks(Number(id), tasks);
     alert("Tasks saved successfully!");
   };
 
-  const deleteTask = (taskId: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-  };
+  const deleteTask = (taskId: number) => setTasks((prev) => prev.filter((task) => task.id !== taskId));
 
-  const toggleTask = (taskId: number) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
+  const toggleTask = (taskId: number) =>
+    setTasks((prev) =>
+      prev.map((task) =>
         task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
-  };
 
-  const updateTask = (taskId: number, newTitle: string) => {
-    if (typeof newTitle !== "string") {
-      console.error("Invalid newTitle:", newTitle);
-      return;
-    }
-
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, title: newTitle.trim() } : task
-      )
+  const updateTaskTitle = (taskId: number, newTitle: string) =>
+    setTasks((prev) =>
+      prev.map((task) => (task.id === taskId ? { ...task, title: newTitle } : task))
     );
-  };
 
   return (
     <div className="todo-list">
       <h2 className="todo-list-title">{listName}</h2>
-      <div className="todo-list-input-container">
-        <input
-          type="text"
-          placeholder="Task title"
-          value={newTaskTitle}
-          onChange={(e) => setNewTaskTitle(e.target.value)}
-          className="todo-list-input"
+      <input
+       className="todo-list-input"
+        type="text"
+        placeholder="Task title"
+        value={newTaskTitle}
+        onChange={(e) => setNewTaskTitle(e.target.value)}
+      />
+      <button className="todo-list-button" onClick={addTask}>Add Task</button>
+      {tasks.map((task) => (
+        <TaskItem 
+          key={task.id}
+          task={task}
+          onDelete={deleteTask}
+          onToggle={toggleTask}
+          onUpdate={updateTaskTitle}
         />
-        <button onClick={addTask} className="todo-grid-button">
-          Add Task
-        </button>
-      </div>
-      <div className="todo-items-container">
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onDelete={deleteTask}
-            onToggle={toggleTask}
-            onUpdate={updateTask}
-          />
-        ))}
-      </div>
-      <div className="todo-list-actions">
-        <button onClick={saveTasks} className="save-button">
-          Save Tasks
-        </button>
-        <button onClick={() => navigate("/todos")} className="save-button">
-          Back to Lists
-        </button>
-      </div>
+      ))}
+      <button className="todo-list-button-save" onClick={saveTasks}>Save Tasks</button>
+      <button className="todo-list-button" onClick={() => navigate("/todos")}>Back</button>
     </div>
   );
 };
