@@ -9,7 +9,6 @@ const TodoGrid: React.FC = () => {
   const [newListName, setNewListName] = useState("");
   const navigate = useNavigate();
 
-  // Завантаження списків при першому рендері та після повернення назад
   const loadTodoLists = () => {
     const lists = getTodoLists();
     setTodoLists(lists);
@@ -19,7 +18,6 @@ const TodoGrid: React.FC = () => {
     loadTodoLists();
   }, []);
 
-  // Збереження списків у localStorage після кожного оновлення
   useEffect(() => {
     saveTodoLists(todoLists);
   }, [todoLists]);

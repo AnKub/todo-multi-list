@@ -4,11 +4,7 @@ export interface Task {
   title: string;
   completed: boolean;
 }
-// export interface TodoTask {
-//   id: number;
-//   title: string;
-//   completed: boolean;
-// }
+
 
 export interface TodoList {
   id: number;
@@ -30,7 +26,6 @@ export interface TodoGridProps {
   onOpenTodoList: (listId: number) => void;
 }
 
-// Додайте ці інтерфейси для форми та помилок
 export interface LoginFormData {
   email: string;
   password: string;
