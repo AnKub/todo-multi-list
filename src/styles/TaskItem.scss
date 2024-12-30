@@ -89,7 +89,7 @@
 // Адаптивність
 @media (max-width: 1024px) {
   .task-item {
-    max-width: 70%; // Збільшуємо ширину для середніх екранів
+    max-width: 70%; 
     font-size: 0.9rem;
     flex-direction: column;
     align-items: flex-start;
@@ -104,13 +104,13 @@
 
 @media (max-width: 768px) {
   .task-item {
-    max-width: 90%; // Збільшуємо ширину для маленьких екранів
+    max-width: 90%; 
     font-size: 0.8rem;
 
     .task-item-delete,
     .task-item-edit,
     .task-item-save {
-      min-width: 40px; // Зменшуємо розмір кнопок
+      min-width: 40px; 
       font-size: 0.7rem;
     }
   }

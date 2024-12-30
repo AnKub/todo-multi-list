@@ -4,7 +4,7 @@ import '../styles/LandingPage.scss';
 
 const LandingPage: React.FC = () => {
     const [isPageLoaded, setIsPageLoaded] = useState<boolean>(false);
-    const [isShaken, setIsShaken] = useState<boolean>(false); // додано стан для "shake" анімації
+    const [isShaken, setIsShaken] = useState<boolean>(false); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,11 +13,11 @@ const LandingPage: React.FC = () => {
     }, []);
 
     const handleButtonClick = (route: string) => {
-        setIsShaken(true);  // запускає анімацію shake
+        setIsShaken(true);  
         setTimeout(() => {
             navigate(route);
-            setIsShaken(false);  // зупиняє анімацію після переходу
-        }, 300);  // Затримка, щоб анімація встигла пройти
+            setIsShaken(false);  
+        }, 300);  
     };
 
     return (
