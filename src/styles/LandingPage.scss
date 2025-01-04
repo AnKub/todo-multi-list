@@ -174,7 +174,7 @@ align-items:center;
 
 @media (max-width: 1024px) {
     .landing-page {
-        flex-direction: column;
+        flex-direction:column;
         width: 100vw;
         min-height: 100vh;
         overflow-y: auto;
@@ -188,7 +188,7 @@ align-items:center;
     }
 
     .button-container {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
     }
 }
