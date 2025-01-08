@@ -8,16 +8,9 @@ import "../styles/TaskItem.scss";
 const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title || "");
-  const [dueDate, setDueDate] = useState<Date | null>(null);
+  const [dueDate, setDueDate] = useState<Date | null>(task.dueDate ? new Date(task.dueDate) : null);
 
-  // Зберігаємо дату виконання, якщо вона є
-  useEffect(() => {
-    if (task.dueDate) {
-      setDueDate(new Date(task.dueDate));
-    }
-  }, [task.dueDate]);
-
-  // Оновлюємо задачу
+  // Обработка обновления задачи
   const handleUpdate = () => {
     if (newTitle.trim()) {
       onUpdate(task.id, newTitle, dueDate);
@@ -27,7 +20,6 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
     }
   };
 
-  // Відображаємо компонент
   return (
     <div className={`task-item ${task.completed ? "completed" : ""}`}>
       {isEditing ? (
@@ -42,32 +34,28 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
           {task.title}
         </span>
       )}
-      <div className="task-buttom">
-        {isEditing ? (
-          <button onClick={handleUpdate} className="task-item-save">
-            Save
-          </button>
-        ) : (
-          <button onClick={() => setIsEditing(true)} className="task-item-edit">
-            Edit
-          </button>
-        )}
-        <button onClick={() => onDelete(task.id)} className="task-item-delete">
-          Del
-        </button>
 
-        {/* Обгортка для DatePicker */}
-        {isEditing && (
-          <div className="task-item-datepicker">
-            <DatePicker
-              selected={dueDate}
-              onChange={(date: Date | null) => setDueDate(date)}
-              placeholderText="Set due date"
-            />
-            <p>{dueDate ? dueDate.toLocaleDateString() : "+"}</p>
-          </div>
+      <div className="task-item-buttons">
+        {isEditing ? (
+          <>
+            <button onClick={handleUpdate} className="task-item-save">Save</button>
+            <div className="task-item-datepicker">
+              <DatePicker
+                selected={dueDate}
+                onChange={(date) => setDueDate(date)}
+                placeholderText="Set due date"
+                dateFormat="dd/MM/yyyy"
+                className="date-picker"
+              />
+            </div>
+          </>
+        ) : (
+          <button onClick={() => setIsEditing(true)} className="task-item-edit">Edit</button>
         )}
+        <button onClick={() => onDelete(task.id)} className="task-item-delete">Del</button>
       </div>
+
+      {dueDate && <p className="task-due-date">Due: {dueDate.toLocaleDateString()}</p>}
     </div>
   );
 };

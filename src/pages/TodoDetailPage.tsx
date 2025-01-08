@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { TodoList, Task } from "../types";
+import "../styles/main.scss";
+import TaskItem from "../components/TaskItem";
 
 const TodoDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
   const [list, setList] = useState<TodoList | null>(null);
-  const [newTask, setNewTask] = useState<string>("");
-  const [editingTask, setEditingTask] = useState<number | null>(null);
-  const [editTaskText, setEditTaskText] = useState<string>("");
+  const [newTask, setNewTask] = useState("");
 
   useEffect(() => {
     const storedLists: TodoList[] = JSON.parse(localStorage.getItem("todoLists") || "[]");
@@ -20,10 +19,17 @@ const TodoDetailPage: React.FC = () => {
   const handleAddTask = () => {
     if (!newTask.trim()) return;
 
+    const newTaskObj: Task = {
+      id: Date.now(),
+      title: newTask,
+      completed: false,
+      dueDate: null,
+    };
+
     if (list) {
       const updatedList: TodoList = {
         ...list,
-        tasks: [...list.tasks, { id: Date.now(), title: newTask, completed: false }],
+        tasks: [...list.tasks, newTaskObj],
       };
       updateLocalStorage(updatedList);
       setNewTask("");
@@ -32,30 +38,11 @@ const TodoDetailPage: React.FC = () => {
 
   const handleDeleteTask = (taskId: number) => {
     if (list) {
-      const updatedList: TodoList = {
+      const updatedList = {
         ...list,
         tasks: list.tasks.filter((task) => task.id !== taskId),
       };
       updateLocalStorage(updatedList);
-    }
-  };
-
-  const handleEditTask = (task: Task) => {
-    setEditingTask(task.id);
-    setEditTaskText(task.title);
-  };
-
-  const handleSaveEdit = (taskId: number) => {
-    if (list) {
-      const updatedList: TodoList = {
-        ...list,
-        tasks: list.tasks.map((task) =>
-          task.id === taskId ? { ...task, title: editTaskText } : task
-        ),
-      };
-      updateLocalStorage(updatedList);
-      setEditingTask(null);
-      setEditTaskText("");
     }
   };
 
@@ -72,42 +59,30 @@ const TodoDetailPage: React.FC = () => {
 
   return (
     <div className="todo-detail-page">
-      <div className="todo-detail-header">
-        <h1>{list.name}</h1>
-        <button onClick={() => navigate("/todos")}>Back to Lists</button>
+      <h1>{list.name}</h1>
+      <button onClick={() => navigate("/todos")}>Back to Lists</button>
+
+      <div className="add-task-section">
+        <input
+          type="text"
+          placeholder="Add a new task"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button onClick={handleAddTask}>Add Task</button>
       </div>
-      <input
-        type="text"
-        placeholder="Add a new task"
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-      />
-      <button onClick={handleAddTask}>Add Task</button>
-      <ul>
+
+      <ul className="task-list">
         {list.tasks.map((task) => (
-          <li
-            key={task.id}
-            className="todo-detail-task"
-            onMouseEnter={(e) => e.currentTarget.classList.add("hovered")}
-            onMouseLeave={(e) => e.currentTarget.classList.remove("hovered")}
-          >
-            {editingTask === task.id ? (
-              <>
-                <input
-                  type="text"
-                  value={editTaskText}
-                  onChange={(e) => setEditTaskText(e.target.value)}
-                />
-                <button onClick={() => handleSaveEdit(task.id)}>Save</button>
-                <button onClick={() => setEditingTask(null)}>Cancel</button>
-              </>
-            ) : (
-              <>
-                {task.title}
-                <button onClick={() => handleEditTask(task)}>Edit</button>
-                <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
-              </>
-            )}
+          <li key={task.id} className="task-item">
+            <TaskItem
+              task={task}
+              onDelete={handleDeleteTask}
+              onToggle={(id) => console.log("Toggle task", id)}
+              onUpdate={(id, title, date) =>
+                console.log(`Update task ${id}: ${title}, Due: ${date?.toLocaleDateString()}`)
+              }
+            />
           </li>
         ))}
       </ul>
