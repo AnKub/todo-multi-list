@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { TaskItemProps } from "../types";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "../styles/main.scss";
-import '../styles/TaskItem.scss';
+import "../styles/TaskItem.scss";
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title || "");
+  const [dueDate, setDueDate] = useState<Date | null>(null);
 
   const handleUpdate = () => {
     if (newTitle.trim()) {
@@ -43,6 +46,15 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
         <button onClick={() => onDelete(task.id)} className="task-item-delete">
           Del
         </button>
+
+        {/* Доданий DatePicker */}
+        <div className="task-item-datepicker">
+          <DatePicker
+            selected={dueDate}
+            onChange={(date) => setDueDate(date)}
+            placeholderText="Set due date"
+          />
+        </div>
       </div>
     </div>
   );

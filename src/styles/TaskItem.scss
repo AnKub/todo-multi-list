@@ -134,3 +134,41 @@
     }
   }
 }
+.task-item-calendar {
+  background-color: var(--bg-button);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+    background-color: var(--background-color2);
+  }
+}
+
+.react-datepicker {
+  font-size: 0.9rem;
+  background-color: var(--background-color1);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.task-item-datepicker {
+  margin-top: 10px;
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  input {
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+}
+
