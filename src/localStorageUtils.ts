@@ -4,7 +4,13 @@ import { TodoList } from "./types";
 export const getTodoLists = (): TodoList[] => {
   try {
     const lists = JSON.parse(localStorage.getItem("todoLists") || "[]") as TodoList[];
-    return lists;
+    return lists.map((list) => ({
+      ...list,
+      tasks: list.tasks.map((task) => ({
+        ...task,
+        dueDate: task.dueDate ? new Date(task.dueDate) : null,
+      })),
+    }));
   } catch (error) {
     console.error("Failed to parse todo lists from localStorage:", error);
     return [];
@@ -14,7 +20,14 @@ export const getTodoLists = (): TodoList[] => {
 // Збереження списків
 export const saveTodoLists = (todoLists: TodoList[]): void => {
   try {
-    localStorage.setItem("todoLists", JSON.stringify(todoLists));
+    const formattedLists = todoLists.map((list) => ({
+      ...list,
+      tasks: list.tasks.map((task) => ({
+        ...task,
+        dueDate: task.dueDate ? task.dueDate.toISOString() : null,
+      })),
+    }));
+    localStorage.setItem("todoLists", JSON.stringify(formattedLists));
   } catch (error) {
     console.error("Failed to save todo lists to localStorage:", error);
   }

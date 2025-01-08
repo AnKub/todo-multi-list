@@ -1,10 +1,9 @@
-
 export interface Task {
   id: number;
   title: string;
   completed: boolean;
+  dueDate?: Date | null;
 }
-
 
 export interface TodoList {
   id: number;
@@ -16,7 +15,7 @@ export interface TaskItemProps {
   task: Task;
   onDelete: (taskId: number) => void;
   onToggle: (taskId: number) => void;
-  onUpdate: (taskId: number, newTitle: string) => void;
+  onUpdate: (taskId: number, newTitle: string, dueDate?: Date | null) => void;
 }
 
 export interface TodoGridProps {

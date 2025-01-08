@@ -84,6 +84,22 @@
       opacity: 0.9;
     }
   }
+
+  // Стилі для DatePicker
+  .task-item-datepicker {
+    margin-top: 10px;
+
+    .react-datepicker-wrapper {
+      width: 100%;
+    }
+
+    input {
+      padding: 5px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+  }
 }
 
 // Адаптивність
@@ -157,18 +173,3 @@
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.task-item-datepicker {
-  margin-top: 10px;
-
-  .react-datepicker-wrapper {
-    width: 100%;
-  }
-
-  input {
-    padding: 5px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 0.9rem;
-  }
-}
-

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { TodoList, Task } from "../types"; 
+import { TodoList, Task } from "../types";
 
-const TodoDetailPage = () => {
+const TodoDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 

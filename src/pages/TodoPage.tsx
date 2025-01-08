@@ -4,7 +4,6 @@ import { TodoList } from "../types";
 import "../styles/main.scss";
 
 const TodoPage: React.FC = () => {
-  // Встановлюємо типи для стану
   const [todoLists, setTodoLists] = useState<TodoList[]>([]);
 
   useEffect(() => {

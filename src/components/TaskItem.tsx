@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TaskItemProps } from "../types";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,15 +10,24 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
   const [newTitle, setNewTitle] = useState(task.title || "");
   const [dueDate, setDueDate] = useState<Date | null>(null);
 
+  // Зберігаємо дату виконання, якщо вона є
+  useEffect(() => {
+    if (task.dueDate) {
+      setDueDate(new Date(task.dueDate));
+    }
+  }, [task.dueDate]);
+
+  // Оновлюємо задачу
   const handleUpdate = () => {
     if (newTitle.trim()) {
-      onUpdate(task.id, newTitle);
+      onUpdate(task.id, newTitle, dueDate);
       setIsEditing(false);
     } else {
       alert("Task title cannot be empty");
     }
   };
 
+  // Відображаємо компонент
   return (
     <div className={`task-item ${task.completed ? "completed" : ""}`}>
       {isEditing ? (
@@ -47,14 +56,17 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
           Del
         </button>
 
-        {/* Доданий DatePicker */}
-        <div className="task-item-datepicker">
-          <DatePicker
-            selected={dueDate}
-            onChange={(date) => setDueDate(date)}
-            placeholderText="Set due date"
-          />
-        </div>
+        {/* Обгортка для DatePicker */}
+        {isEditing && (
+          <div className="task-item-datepicker">
+            <DatePicker
+              selected={dueDate}
+              onChange={(date: Date | null) => setDueDate(date)}
+              placeholderText="Set due date"
+            />
+            <p>{dueDate ? dueDate.toLocaleDateString() : "+"}</p>
+          </div>
+        )}
       </div>
     </div>
   );
