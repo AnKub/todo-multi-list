@@ -7,14 +7,14 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title || "");
 
-  // const handleUpdate = () => {
-  //   if (newTitle.trim()) {
-  //     onUpdate(task.id, newTitle);
-  //     setIsEditing(false);
-  //   } else {
-  //     alert("Task title cannot be empty");
-  //   }
-  // };
+  const handleUpdate = () => {
+    if (newTitle.trim()) {
+      onUpdate(task.id, newTitle);
+      setIsEditing(false);
+    } else {
+      alert("Task title cannot be empty");
+    }
+  };
 
   return (
     <div className={`task-item ${task.completed ? "completed" : ""}`}>
