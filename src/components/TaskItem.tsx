@@ -39,7 +39,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
         {isEditing ? (
           <>
             <button onClick={handleUpdate} className="task-item-save">Save</button>
-            <div className="task-item-datepicker">
+            {/* <div className="task-item-datepicker">
               <DatePicker
                 selected={dueDate}
                 onChange={(date) => setDueDate(date)}
@@ -47,7 +47,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggle, onUpdate 
                 dateFormat="dd/MM/yyyy"
                 className="date-picker"
               />
-            </div>
+            </div> */}
           </>
         ) : (
           <button onClick={() => setIsEditing(true)} className="task-item-edit">Edit</button>
