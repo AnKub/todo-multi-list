@@ -97,11 +97,11 @@ align-items:center;
         gap: 2rem;
 
         .landing-button {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             border: 1ps solid var(--bg-button);
-            border-color: #ffa500;
+            border-color: var(--bg-button);
             color: #fff;
             font-size: 1.2rem;    
             font-weight: bold;
@@ -113,7 +113,7 @@ align-items:center;
                 transform: scale(1.1);
                 transition: transform 0.2s ease-in-out;
                 box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 5px 5px 9px 5px rgba(3, 16, 28, 0);
-                background-color: hwb(120 1% 70%);
+                background-color: var(--bg-button);
             }
 
             &:focus {
