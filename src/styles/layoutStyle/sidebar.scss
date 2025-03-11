@@ -1,10 +1,11 @@
 .sidebar {
   color: var(--header-background);
   width: 9vw;
+  min-width: 120px;
+  flex-shrink: 0;
   position: relative;
   margin-top: 9vh;
   margin-left: 0.5rem;
-  transition: width 0.5s ease-in-out;
   overflow: hidden;
   height: 30vh;
   border-radius: 0% 0% 8% 8%;
@@ -12,6 +13,7 @@
   background-size: 600% 600%;
   animation: colorShift 40s infinite;
   box-shadow: 0px 0px 7px 0px #f4931d;
+  transition: width 0.5s ease-in-out, min-width 0.5s ease-in-out;
 
   @keyframes colorShift {
     0% {
@@ -27,10 +29,13 @@
 
   ul {
     list-style: none;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
 
     li {
       margin-bottom: 15px;
+      display: flex;
+      align-items: center;
 
       a {
         color: var(--text-color);
@@ -38,8 +43,7 @@
         font-family: "Space Grotesk", Arial, sans-serif;
         font-size: 1rem;
         font-weight: 500;
-        transition: all 0.5s ease-in-out;
-        white-space: nowrap; // Запобігає переносу тексту
+        transition: color 0.3s ease-in-out;
 
         &:hover {
           color: var(--header-text-color);
@@ -50,17 +54,18 @@
 
   &.collapsed {
     width: 30px;
+    min-width: 30px;
     height: 8%;
     margin-top: 5%;
-    transition: 0.5s ease-in-out;
     border-radius: 25%;
+    transition: width 0.5s ease-in-out, min-width 0.5s ease-in-out;
 
     ul {
       padding: 0;
     }
 
     li a {
-      font-size: 0; // Приховує текст
+      font-size: 0;
       overflow: hidden;
     }
   }
@@ -68,8 +73,7 @@
   .toggle-button {
     position: absolute;
     top: 15%;
-    transform: translateY(-50%);
-    right: 0px;
+    right: 0;
     width: 34px;
     height: 34px;
     background: none;
@@ -88,7 +92,6 @@
       position: relative;
       width: 34px;
       height: 34px;
-    
 
       img {
         position: absolute;
@@ -96,74 +99,33 @@
         left: 0;
         width: 100%;
         height: 100%;
-        
         transition: transform 0.3s ease, opacity 0.3s ease;
       }
-
-      .icon-left {
-        transform: translateX(10px);
-        opacity: 0;
-        transition: 1s ease-in-out;
-        margin-top:1rem;
-      }
-
-      .icon-right {
-        transform: translateX(-10px);
-        transition: 1s ease-in-out;
-        opacity: 0;
-      }
-    }
-
-    &.icon-collapsed .icon-left {
-      transform: translateX(0);
-      transition: 1s ease-in-out;
-      opacity: 1;
-    }
-
-    &.icon-collapsed .icon-right {
-      transform: translateX(10px);
-      transition: 1s ease-in-out;
-      opacity: 0;
-    }
-
-    &.icon-expanded .icon-right {
-      transform: translateX(0);
-      transition: 1s ease-in-out;
-      opacity: 1;
-    }
-
-    &.icon-expanded .icon-left {
-      transform: translateX(-10px);
-      transition: 1s ease-in-out;
-      opacity: 0;
     }
   }
 }
 
-// Адаптивність
 @media (max-width: 1024px) {
   .sidebar {
-    width: 12vw; 
-    ul li a {
-      font-size: 0.9rem;
-    }
+    width: 12vw;
+    min-width: 100px;
   }
 }
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 15vw; 
-    ul li a {
-      font-size: 0.8rem;
-    }
+    width: 15vw;
+    min-width: 90px;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 50px; // Для дуже маленьких екранів
+    width: 50px;
+    min-width: 50px;
+
     ul li a {
-      font-size: 0; // Приховує текст
+      font-size: 0;
     }
   }
 }
