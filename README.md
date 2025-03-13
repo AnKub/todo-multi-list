@@ -1,4 +1,4 @@
-# 📝 **To-Do Application with Customizable Lists**
+# 📝 **To-Do App with Customizable Lists**
 
 A task management application with customizable lists for creating, editing, and viewing tasks. User-friendly interface, adaptive design, and powerful features for users.
 
